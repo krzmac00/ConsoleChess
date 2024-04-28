@@ -21,8 +21,8 @@ public:
     //check-related methods
     virtual void setCheck(const PiecePtr& checkingPiece);
     virtual void cancelCheck();
-    virtual bool isCheck();
-    virtual CheckPtr getCheckingPiece() const;
+    virtual bool isInCheck();
+    virtual CheckPtr getCheck() const;
 
     virtual Color getColor() const;
     virtual void setKing(PiecePtr _king);

@@ -24,7 +24,7 @@ public:
     virtual void setCaptured();
     virtual void restore(SquarePtr);
     virtual bool isFirstMove() const;
-    virtual void setFirstMove();
+    virtual void setFirstMove(bool isFirst);
     virtual bool canBeMovedToSquare(SquarePtr, BoardPtr) = 0;
 };
 

@@ -47,7 +47,7 @@ PiecePtr Player::getKing() const {
     return king;
 }
 
-bool Player::isCheck() {
+bool Player::isInCheck() {
     return check->isCheck();
 }
 
@@ -61,7 +61,7 @@ void Player::cancelCheck() {
     check->setCheckingPiece(nullptr);
 }
 
-CheckPtr Player::getCheckingPiece() const {
+CheckPtr Player::getCheck() const {
     return this->check;
 }
 

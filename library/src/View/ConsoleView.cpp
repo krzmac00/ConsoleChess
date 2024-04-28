@@ -90,8 +90,8 @@ void ConsoleView::displayDefView(BoardPtr &board, PlayerPtr &player1, PlayerPtr 
     displayBoard(board, player1, player2);
     displayCapturedPieces(player1, player2);
     cout << "(M)enu" << endl;
-    if(player1->isCheck()) displayCheckInfo(player1);
-    else if (player2->isCheck()) displayCheckInfo(player2);
+    if(player1->isInCheck()) displayCheckInfo(player1);
+    else if (player2->isInCheck()) displayCheckInfo(player2);
 }
 
 bool ConsoleView::readUserChoice() const {

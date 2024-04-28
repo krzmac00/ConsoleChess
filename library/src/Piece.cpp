@@ -70,8 +70,8 @@ bool Piece::isFirstMove() const {
     return firstMove;
 }
 
-void Piece::setFirstMove() {
-    firstMove = true;
+void Piece::setFirstMove(bool isFirst) {
+    firstMove = isFirst;
 }
 
 Piece::~Piece() = default;

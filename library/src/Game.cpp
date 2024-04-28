@@ -87,32 +87,32 @@ bool Game::play() {
     else this->loadGame();
 
     while(continuePlaying) {
-        PlayerPtr drugiGracz;
+        PlayerPtr otherPlayer;
         if(playerTurn == player1){
-            drugiGracz = player2;
+            otherPlayer = player2;
         }
-        else drugiGracz = player1;
+        else otherPlayer = player1;
 
         view->displayDefView(board, player1, player2);
         Event event = this->handleMove(playerTurn);
         view->setError(false);
         if(event == Event::quit) return false;
         if(event == Event::closeMenu) continue;
-        //if event == Event::Move
+        //if(event == Event::Move)
 
-        //handle checkingPiece
         playerTurn->cancelCheck();
-        PiecePtr checkingPiece = this->getCheckingPiece(drugiGracz);
-        if(checkingPiece != nullptr) drugiGracz->setCheck(checkingPiece);
+        //check if other player is in check
+        PiecePtr checkingPiece = this->getCheckingPiece(otherPlayer);
+        if(checkingPiece != nullptr) otherPlayer->setCheck(checkingPiece);
 
-        if(this->isCheckmate(drugiGracz)) {
+        if(this->isCheckmate(otherPlayer)) {
             view->displayDefView(board, player1, player2);
             view->displayWinner(playerTurn);
             std::string option = view->readUserChoiceOfMenuOption();
             if(option == "N") return true;
             else return false;
         }
-        else if(this->isStalemate(drugiGracz)) {
+        else if(this->isStalemate(otherPlayer)) {
             view->displayDefView(board, player1, player2);
             view->displayDraw();
             std::string option = view->readUserChoiceOfMenuOption();
@@ -195,6 +195,7 @@ bool Game::isMoveCorrect(PlayerPtr &player, MovePtr &move) {
 }
 
 bool Game::isCastlingCorrect(PlayerPtr &player, std::string castling) {
+    if(player->isInCheck()) return false;
     if(!player->getKing()->isFirstMove()) return false;
     if(castling == "O-O") {
         if(player->getColor() == WHITE) {
@@ -202,14 +203,16 @@ bool Game::isCastlingCorrect(PlayerPtr &player, std::string castling) {
                 if(board->getSquare(7, 7)->getPiece()->isFirstMove() == false) return false;
                 if(board->getSquare(7, 6)->getPiece() != nullptr || board->getSquare(7, 5)->getPiece() != nullptr) return false;
                 if(this->isSquareAttacked(player, board->getSquare(7, 5))) return false;
+                if(this->isSquareAttacked(player, board->getSquare(7, 6))) return false;
             }
             else return false;
         }
-        else {
+        else { //player->getColor() == BLACK
             if(board->getSquare(0, 7)->getPiece() != nullptr) {
                 if(board->getSquare(0, 7)->getPiece()->isFirstMove() == false) return false;
                 if(board->getSquare(0, 6)->getPiece() != nullptr || board->getSquare(0, 5)->getPiece() != nullptr) return false;
                 if(this->isSquareAttacked(player, board->getSquare(0, 5))) return false;
+                if(this->isSquareAttacked(player, board->getSquare(0, 6))) return false;
             }
             else return false;
         }
@@ -220,15 +223,17 @@ bool Game::isCastlingCorrect(PlayerPtr &player, std::string castling) {
                 if(board->getSquare(7, 0)->getPiece()->isFirstMove() == false) return false;
                 if(board->getSquare(7, 1)->getPiece() != nullptr || board->getSquare(7, 2)->getPiece() != nullptr ||
                    board->getSquare(7, 3)->getPiece() != nullptr) return false;
+                if(this->isSquareAttacked(player, board->getSquare(7, 2))) return false;
                 if(this->isSquareAttacked(player, board->getSquare(7, 3))) return false;
             }
             else return false;
         }
-        else {
+        else { //player->getColor() == BLACK
             if(board->getSquare(0, 0)->getPiece() != nullptr) {
                 if(board->getSquare(0, 0)->getPiece()->isFirstMove() == false) return false;
                 if(board->getSquare(0, 1)->getPiece() != nullptr || board->getSquare(0, 2)->getPiece() != nullptr ||
                    board->getSquare(0, 3)->getPiece() != nullptr) return false;
+                if(this->isSquareAttacked(player, board->getSquare(0, 2))) return false;
                 if(this->isSquareAttacked(player, board->getSquare(0, 3))) return false;
             }
             else return false;
@@ -278,7 +283,7 @@ PiecePtr Game::getCheckingPiece(PlayerPtr &playerInCheck) {
 }
 
 bool Game::canCheckingPieceBeCaptured(PlayerPtr &playerInCheck) {
-    SquarePtr squareOfCheckingPiece = playerInCheck->getCheckingPiece()->getCheckingPiece()->getSquare();
+    SquarePtr squareOfCheckingPiece = playerInCheck->getCheck()->getCheckingPiece()->getSquare();
     for(auto &piece : board->getPiecesOfPlayer(playerInCheck)) {
         if(piece != nullptr && !piece->isCaptured()) {
             if(piece->canBeMovedToSquare(squareOfCheckingPiece, board)) {
@@ -293,7 +298,7 @@ bool Game::canCheckingPieceBeCaptured(PlayerPtr &playerInCheck) {
 bool Game::canCheckBeBlocked(PlayerPtr &player) {
     int kingRow = player->getKing()->getSquare()->getRow();
     int kingColumn = player->getKing()->getSquare()->getColumn();
-    PiecePtr checkingPiece = player->getCheckingPiece()->getCheckingPiece();
+    PiecePtr checkingPiece = player->getCheck()->getCheckingPiece();
     int checkingPieceRow = checkingPiece->getSquare()->getRow();
     int checkingPieceColumn = checkingPiece->getSquare()->getColumn();
     std::vector<PiecePtr> playerPieces = board->getPiecesOfPlayer(player);
@@ -493,7 +498,7 @@ bool Game::canKingBeMoved(PlayerPtr &player) {
 }
 
 bool Game::isCheckmate(PlayerPtr &player) {
-    if(!player->isCheck()) return false;
+    if(!player->isInCheck()) return false;
     if(this->canCheckingPieceBeCaptured(player)) return false;
     if(this->canKingBeMoved(player)) return false;
     if(this->canCheckBeBlocked(player)) return false;
@@ -527,11 +532,11 @@ bool Game::saveGame() {
     for(int x = 0; x < 8; x++) {
         for(int y = 0; y < 8; y++) {
             std::string abbr;
-            board->getSquare(x, y)->getPiece() == nullptr ? abbr = "()" : abbr = board->getSquare(x,
-                                                                                                  y)->getPiece()->getAbbr();
-            file << abbr << " ";
+            board->getSquare(x, y)->getPiece() == nullptr ?
+            abbr = "[.]" : (abbr = board->getSquare(x,y)->getPiece()->getAbbr() + (board->getSquare(x,y)->getPiece()->isFirstMove() ? "1" : "0"));
+            file << abbr << "   ";
         }
-        file << std::endl;
+        file << std::endl << std::endl;
     }
 
     //Save player that saves the game
@@ -539,9 +544,9 @@ bool Game::saveGame() {
 
     //Save players
     file << player1->getName() << " " << player1->getColor() << " " <<
-         (player1->isCheck() ? player1->getCheckingPiece()->getCheckingPiece()->getSquare()->toString() : "" ) << std::endl;
+         (player1->isInCheck() ? player1->getCheck()->getCheckingPiece()->getSquare()->toString() : "" ) << std::endl;
     file << player2->getName() << " " << player2->getColor() << " " <<
-         (player2->isCheck() ? player2->getCheckingPiece()->getCheckingPiece()->getSquare()->toString() : "" ) << std::endl;
+         (player2->isInCheck() ? player2->getCheck()->getCheckingPiece()->getSquare()->toString() : "" ) << std::endl;
 
     //Save players moves
     std::vector<std::string> movesOfPlayer1 = player1->getMoves();
@@ -608,6 +613,7 @@ bool Game::loadGame() {
         for (int j = 0; j < 8; ++j) {
             isstream >> table[i][j];
         }
+        getline(file, line);
     }
     //player that saves game
     getline(file, line);
@@ -684,7 +690,7 @@ bool Game::loadGame() {
     }
     for(int i = 0; i < 8; i++) {
         for(int j = 0; j < 8; j++) {
-            if(table[i][j][1] != ')') {
+            if(table[i][j][0] != '[') {
                 if(table[i][j][0] == 'B') owner = black;
                 if(table[i][j][0] == 'W') owner = white;
                 switch(table[i][j][1]) {
@@ -710,6 +716,8 @@ bool Game::loadGame() {
                     default:
                         break;
                 }
+                if(table[i][j][2] == '0')
+                    board->getSquare(i, j)->getPiece()->setFirstMove(false);
             }
         }
     }

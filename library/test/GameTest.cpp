@@ -43,28 +43,35 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteGame, TestSuiteGameFixture)
 
     /******************************** play() ********************************/
 
-    BOOST_AUTO_TEST_CASE(practicalUseCaseCastlingTest) {
+    BOOST_AUTO_TEST_CASE(practicalUseCaseEnPassantTest) {
         std::string moves = "E2-E4 A7-A5 E4-E5 D7-D5 E5-D6 A5-A4 B2-B3 C7-C5 B3-B4 A4-B3 C5-B4 C2-C4 B4-C3";
         viewTest->setMoves(moves);
         game->play();
-        std::string expectedPiecesPositions = "BR BN BB BQ BK BB BN BR \n"
-                                              "() BP () () BP BP BP BP \n"
-                                              "() () () WP () () () () \n"
-                                              "() () () () () () () () \n"
-                                              "BP () () () () () () () \n"
-                                              "() () BP () () () () () \n"
-                                              "WP () () WP () WP WP WP \n"
-                                              "WR WN WB WQ WK WB WN WR \n";
+        std::string expectedPiecesPositions = "BR1   BN1   BB1   BQ1   BK1   BB1   BN1   BR1   \n\n"
+
+                                              "[.]   BP1   [.]   [.]   BP1   BP1   BP1   BP1   \n\n"
+
+                                              "[.]   [.]   [.]   WP0   [.]   [.]   [.]   [.]   \n\n"
+
+                                              "[.]   [.]   [.]   [.]   [.]   [.]   [.]   [.]   \n\n"
+
+                                              "BP0   [.]   [.]   [.]   [.]   [.]   [.]   [.]   \n\n"
+
+                                              "[.]   [.]   BP0   [.]   [.]   [.]   [.]   [.]   \n\n"
+
+                                              "WP1   [.]   [.]   WP1   [.]   WP1   WP1   WP1   \n\n"
+
+                                              "WR1   WN1   WB1   WQ1   WK1   WB1   WN1   WR1   \n\n";
         BOOST_REQUIRE_EQUAL(expectedPiecesPositions, game->getBoard()->toString());
         BOOST_REQUIRE_EQUAL(game->getPlayer1()->getCapturedPieces().size(), 1);
         BOOST_REQUIRE_EQUAL(game->getPlayer2()->getCapturedPieces().size(), 2);
     }
 
-    BOOST_AUTO_TEST_CASE(practicalUseTestCaseSzach) {
+    BOOST_AUTO_TEST_CASE(practicalUseTestCaseCheck) {
         std::string moves = "E2-E3 F7-F6 D1-H5";
         viewTest->setMoves(moves);
         game->play();
-        BOOST_REQUIRE_EQUAL(game->getPlayer2()->isCheck(), true);
+        BOOST_REQUIRE_EQUAL(game->getPlayer2()->isInCheck(), true);
     }
 
     BOOST_AUTO_TEST_CASE(practicalUseTestCaseCheckmate) {
@@ -79,14 +86,21 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteGame, TestSuiteGameFixture)
         viewTest->setMoves(moves);
         viewTest->setNewGame(false);
         viewTest->setFilePath("../../library/test/gameSaveFiles/testCaseStalemate.txt");
-        std::string expectedPiecesPositions = "() () () () () BK () () \n"
-                                              "() () () () () () BP () \n"
-                                              "() () () () () () () () \n"
-                                              "() () BP () () () () () \n"
-                                              "() () () () () () () () \n"
-                                              "() () () BQ () () () () \n"
-                                              "WK () () WP () () () () \n"
-                                              "() () BQ () () () () () \n";
+        std::string expectedPiecesPositions = "[.]   [.]   [.]   [.]   [.]   BK0   [.]   [.]   \n\n"
+
+                                              "[.]   [.]   [.]   [.]   [.]   [.]   BP1   [.]   \n\n"
+
+                                              "[.]   [.]   [.]   [.]   [.]   [.]   [.]   [.]   \n\n"
+
+                                              "[.]   [.]   BP0   [.]   [.]   [.]   [.]   [.]   \n\n"
+
+                                              "[.]   [.]   [.]   [.]   [.]   [.]   [.]   [.]   \n\n"
+
+                                              "[.]   [.]   [.]   BQ0   [.]   [.]   [.]   [.]   \n\n"
+
+                                              "WK0   [.]   [.]   WP1   [.]   [.]   [.]   [.]   \n\n"
+
+                                              "[.]   [.]   BQ0   [.]   [.]   [.]   [.]   [.]   \n\n";
         game->play();
         BOOST_REQUIRE_EQUAL(expectedPiecesPositions, game->getBoard()->toString());
         BOOST_REQUIRE_EQUAL(game->isStalematePublic(game->getPlayer1()), true);
@@ -99,14 +113,21 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteGame, TestSuiteGameFixture)
         viewTest->setGameWithComputer(false);
         viewTest->setPlayer1Color(WHITE);
         game->startGamePublic();
-        std::string expectedPiecesPositions = "BR BN BB BQ BK BB BN BR \n"
-                                              "BP BP BP BP BP BP BP BP \n"
-                                              "() () () () () () () () \n"
-                                              "() () () () () () () () \n"
-                                              "() () () () () () () () \n"
-                                              "() () () () () () () () \n"
-                                              "WP WP WP WP WP WP WP WP \n"
-                                              "WR WN WB WQ WK WB WN WR \n";
+        std::string expectedPiecesPositions = "BR1   BN1   BB1   BQ1   BK1   BB1   BN1   BR1   \n\n"
+
+                                              "BP1   BP1   BP1   BP1   BP1   BP1   BP1   BP1   \n\n"
+
+                                              "[.]   [.]   [.]   [.]   [.]   [.]   [.]   [.]   \n\n"
+
+                                              "[.]   [.]   [.]   [.]   [.]   [.]   [.]   [.]   \n\n"
+
+                                              "[.]   [.]   [.]   [.]   [.]   [.]   [.]   [.]   \n\n"
+
+                                              "[.]   [.]   [.]   [.]   [.]   [.]   [.]   [.]   \n\n"
+
+                                              "WP1   WP1   WP1   WP1   WP1   WP1   WP1   WP1   \n\n"
+
+                                              "WR1   WN1   WB1   WQ1   WK1   WB1   WN1   WR1   \n\n";
         BOOST_TEST(expectedPiecesPositions == game->getBoard()->toString());
         BOOST_TEST(game->getPlayer1()->getName() == "Player_1");
         BOOST_REQUIRE_EQUAL(game->getPlayer1()->getColor(), WHITE);
@@ -147,14 +168,21 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteGame, TestSuiteGameFixture)
         move4->execute(blackPlayer, board);
         whitePlayer->setCheck(board->getSquare(4, 1)->getPiece());
         game->setPlayerTurn(blackPlayer);
-        std::string expectedPiecesPositions = "BR () () () BK () () () \n"
-                                              "() () () () () () () () \n"
-                                              "BN () () () () () () () \n"
-                                              "() () () () () () () () \n"
-                                              "() BQ () () () () () () \n"
-                                              "() () () () WP WN () () \n"
-                                              "() () () () () WP () () \n"
-                                              "WR () () () WK () () () \n";
+        std::string expectedPiecesPositions = "BR1   [.]   [.]   [.]   BK1   [.]   [.]   [.]   \n\n"
+
+                                              "[.]   [.]   [.]   [.]   [.]   [.]   [.]   [.]   \n\n"
+
+                                              "BN1   [.]   [.]   [.]   [.]   [.]   [.]   [.]   \n\n"
+
+                                              "[.]   [.]   [.]   [.]   [.]   [.]   [.]   [.]   \n\n"
+
+                                              "[.]   BQ0   [.]   [.]   [.]   [.]   [.]   [.]   \n\n"
+
+                                              "[.]   [.]   [.]   [.]   WP1   WN0   [.]   [.]   \n\n"
+
+                                              "[.]   [.]   [.]   [.]   [.]   WP1   [.]   [.]   \n\n"
+
+                                              "WR1   [.]   [.]   [.]   WK1   [.]   [.]   [.]   \n\n";
         BOOST_TEST(expectedPiecesPositions == game->getBoard()->toString());
         std::vector<std::string> piecesCapturedByPlayer1 = whitePlayer->getCapturedPieces();
         std::vector<std::string> piecesCapturedByPlayer2 = blackPlayer->getCapturedPieces();
@@ -167,8 +195,8 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteGame, TestSuiteGameFixture)
         BOOST_REQUIRE_EQUAL(game->getPlayer1()->getColor(), WHITE);
         BOOST_REQUIRE_EQUAL(game->getPlayer1()->getName(), "Player_1");
         BOOST_REQUIRE_EQUAL(game->getPlayer1()->getKing(), game->getBoard()->getSquare(7, 4)->getPiece());
-        BOOST_REQUIRE_EQUAL(game->getPlayer1()->isCheck(), true);
-        BOOST_REQUIRE_EQUAL(game->getPlayer1()->getCheckingPiece()->getCheckingPiece(), game->getBoard()->getSquare(4, 1)->getPiece());
+        BOOST_REQUIRE_EQUAL(game->getPlayer1()->isInCheck(), true);
+        BOOST_REQUIRE_EQUAL(game->getPlayer1()->getCheck()->getCheckingPiece(), game->getBoard()->getSquare(4, 1)->getPiece());
         BOOST_REQUIRE_EQUAL(game->getPlayer2()->getColor(), BLACK);
         BOOST_REQUIRE_EQUAL(game->getPlayer2()->getName(), "Player_2");
         BOOST_REQUIRE_EQUAL(game->getPlayer2()->getKing(), game->getBoard()->getSquare(0, 4)->getPiece());
@@ -216,7 +244,7 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteGame, TestSuiteGameFixture)
 
     /************************* getCheckingPiece() *************************/
 
-    BOOST_AUTO_TEST_CASE(getcheckingPieceTest_return_piece) {
+    BOOST_AUTO_TEST_CASE(getCheckingPieceTest_return_piece) {
         gameDefaultSettings();
         board->addPiece(PieceType::King, blackPlayer, 0, 4);
         blackPlayer->setKing(board->getSquare(0, 4)->getPiece());
@@ -227,7 +255,7 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteGame, TestSuiteGameFixture)
         BOOST_REQUIRE_EQUAL(game->getCheckingPiecePublic(blackPlayer), board->getSquare(5, 4)->getPiece());
     }
 
-    BOOST_AUTO_TEST_CASE(getcheckingPieceTest_return_nullptr) {
+    BOOST_AUTO_TEST_CASE(getCheckingPieceTest_return_nullptr) {
         gameDefaultSettings();
         board->addPiece(PieceType::King, blackPlayer, 0, 4);
         blackPlayer->setKing(board->getSquare(0, 4)->getPiece());
@@ -464,7 +492,7 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteGame, TestSuiteGameFixture)
 
     /************************* isCastlingCorrect() *************************/
 
-    BOOST_AUTO_TEST_CASE(isCastlingCorrectPositiveTestCaseShort) {
+    BOOST_AUTO_TEST_CASE(isCastlingCorrectCaseShortPositiveTest) {
         //white
         board->addPiece(PieceType::Rook, whitePlayer, 7, 7);
         board->addPiece(PieceType::King, whitePlayer, 7, 4);
@@ -477,7 +505,7 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteGame, TestSuiteGameFixture)
         BOOST_REQUIRE_EQUAL(game->isCastlingCorrectPublic(blackPlayer, "O-O"), true);
     }
 
-    BOOST_AUTO_TEST_CASE(isCastlingCorrectPositiveTestCaseLong) {
+    BOOST_AUTO_TEST_CASE(isCastlingCorrectCaseLongPositiveTest) {
         //white
         board->addPiece(PieceType::Rook, whitePlayer, 7, 0);
         board->addPiece(PieceType::King, whitePlayer, 7, 4);
@@ -490,6 +518,116 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteGame, TestSuiteGameFixture)
         BOOST_REQUIRE_EQUAL(game->isCastlingCorrectPublic(blackPlayer, "O-O-O"), true);
     }
 
+    BOOST_AUTO_TEST_CASE(isCastlingCorrectCaseShortNegativeTestCaseKingInCheck) {
+        //white
+        board->addPiece(PieceType::Rook, whitePlayer, 7, 7);
+        board->addPiece(PieceType::King, whitePlayer, 7, 4);
+        board->addPiece(PieceType::Queen, blackPlayer, 4, 4);
+        whitePlayer->setKing(board->getSquare(4, 4)->getPiece());
+        whitePlayer->setCheck(board->getSquare(7,4)->getPiece());
+        BOOST_REQUIRE_EQUAL(game->isCastlingCorrectPublic(whitePlayer, "O-O"), false);
+        //black
+        board->addPiece(PieceType::Rook, blackPlayer, 0, 7);
+        board->addPiece(PieceType::King, blackPlayer, 0, 4);
+        board->addPiece(PieceType::Queen, whitePlayer, 3, 4);
+        blackPlayer->setKing(board->getSquare(0, 4)->getPiece());
+        blackPlayer->setCheck(board->getSquare(3,4)->getPiece());
+        BOOST_REQUIRE_EQUAL(game->isCastlingCorrectPublic(blackPlayer, "O-O"), false);
+    }
+
+    BOOST_AUTO_TEST_CASE(isCastlingCorrectCaseShortNegativeTestCaseColumnFIsAttacked) {
+        gameDefaultSettings();
+        //white
+        board->addPiece(PieceType::Rook, whitePlayer, 7, 7);
+        board->addPiece(PieceType::King, whitePlayer, 7, 4);
+        board->addPiece(PieceType::Queen, blackPlayer, 4, 5);
+        whitePlayer->setKing(board->getSquare(7, 4)->getPiece());
+        BOOST_REQUIRE_EQUAL(game->isCastlingCorrectPublic(whitePlayer, "O-O"), false);
+        //black
+        board->addPiece(PieceType::Rook, blackPlayer, 0, 7);
+        board->addPiece(PieceType::King, blackPlayer, 0, 4);
+        board->addPiece(PieceType::Queen, whitePlayer, 3, 5);
+        blackPlayer->setKing(board->getSquare(0, 4)->getPiece());
+        BOOST_REQUIRE_EQUAL(game->isCastlingCorrectPublic(blackPlayer, "O-O"), false);
+    }
+
+    BOOST_AUTO_TEST_CASE(isCastlingCorrectCaseShortNegativeTestCaseColumnGIsAttacked) {
+        gameDefaultSettings();
+        //white
+        board->addPiece(PieceType::Rook, whitePlayer, 7, 7);
+        board->addPiece(PieceType::King, whitePlayer, 7, 4);
+        board->addPiece(PieceType::Queen, blackPlayer, 4, 6);
+        whitePlayer->setKing(board->getSquare(7, 4)->getPiece());
+        BOOST_REQUIRE_EQUAL(game->isCastlingCorrectPublic(whitePlayer, "O-O"), false);
+        //black
+        board->addPiece(PieceType::Rook, blackPlayer, 0, 7);
+        board->addPiece(PieceType::King, blackPlayer, 0, 4);
+        board->addPiece(PieceType::Queen, whitePlayer, 3, 6);
+        blackPlayer->setKing(board->getSquare(0, 4)->getPiece());
+        BOOST_REQUIRE_EQUAL(game->isCastlingCorrectPublic(blackPlayer, "O-O"), false);
+    }
+
+    BOOST_AUTO_TEST_CASE(isCastlingCorrectCaseLongNegativeTestCaseColumnCIsAttacked) {
+        gameDefaultSettings();
+        //white
+        board->addPiece(PieceType::Rook, whitePlayer, 7, 0);
+        board->addPiece(PieceType::King, whitePlayer, 7, 4);
+        board->addPiece(PieceType::Queen, blackPlayer, 4, 2);
+        whitePlayer->setKing(board->getSquare(7, 4)->getPiece());
+        BOOST_REQUIRE_EQUAL(game->isCastlingCorrectPublic(whitePlayer, "O-O-O"), false);
+        //black
+        board->addPiece(PieceType::Rook, blackPlayer, 0, 0);
+        board->addPiece(PieceType::King, blackPlayer, 0, 4);
+        board->addPiece(PieceType::Queen, whitePlayer, 3, 2);
+        blackPlayer->setKing(board->getSquare(0, 4)->getPiece());
+        BOOST_REQUIRE_EQUAL(game->isCastlingCorrectPublic(blackPlayer, "O-O-O"), false);
+    }
+
+    BOOST_AUTO_TEST_CASE(isCastlingCorrectCaseLongNegativeTestCaseColumnDIsAttacked) {
+        gameDefaultSettings();
+        //white
+        board->addPiece(PieceType::Rook, whitePlayer, 7, 0);
+        board->addPiece(PieceType::King, whitePlayer, 7, 4);
+        board->addPiece(PieceType::Queen, blackPlayer, 4, 3);
+        whitePlayer->setKing(board->getSquare(7, 4)->getPiece());
+        BOOST_REQUIRE_EQUAL(game->isCastlingCorrectPublic(whitePlayer, "O-O-O"), false);
+        //black
+        board->addPiece(PieceType::Rook, blackPlayer, 0, 0);
+        board->addPiece(PieceType::King, blackPlayer, 0, 4);
+        board->addPiece(PieceType::Queen, whitePlayer, 3, 3);
+        blackPlayer->setKing(board->getSquare(0, 4)->getPiece());
+        BOOST_REQUIRE_EQUAL(game->isCastlingCorrectPublic(blackPlayer, "O-O-O"), false);
+    }
+
+    BOOST_AUTO_TEST_CASE(isCastlingCorrectCaseShortNegativeTestCasePieceInBetween) {
+        //white
+        board->addPiece(PieceType::Rook, whitePlayer, 7, 7);
+        board->addPiece(PieceType::King, whitePlayer, 7, 4);
+        board->addPiece(PieceType::Bishop, whitePlayer, 7, 5);
+        whitePlayer->setKing(board->getSquare(7, 4)->getPiece());
+        BOOST_REQUIRE_EQUAL(game->isCastlingCorrectPublic(whitePlayer, "O-O"), false);
+        //black
+        board->addPiece(PieceType::Rook, blackPlayer, 0, 7);
+        board->addPiece(PieceType::King, blackPlayer, 0, 4);
+        board->addPiece(PieceType::Bishop, whitePlayer, 0, 6);
+        blackPlayer->setKing(board->getSquare(0, 4)->getPiece());
+        BOOST_REQUIRE_EQUAL(game->isCastlingCorrectPublic(blackPlayer, "O-O"), false);
+    }
+
+    BOOST_AUTO_TEST_CASE(isCastlingCorrectCaseLongNegativeTestCasePieceInBetween) {
+        //white
+        board->addPiece(PieceType::Rook, whitePlayer, 7, 0);
+        board->addPiece(PieceType::King, whitePlayer, 7, 4);
+        board->addPiece(PieceType::Bishop, whitePlayer, 7, 1);
+        whitePlayer->setKing(board->getSquare(7, 4)->getPiece());
+        BOOST_REQUIRE_EQUAL(game->isCastlingCorrectPublic(whitePlayer, "O-O-O"), false);
+        //black
+        board->addPiece(PieceType::Rook, blackPlayer, 0, 0);
+        board->addPiece(PieceType::King, blackPlayer, 0, 4);
+        board->addPiece(PieceType::Bishop, blackPlayer, 0, 2);
+        blackPlayer->setKing(board->getSquare(0, 4)->getPiece());
+        BOOST_REQUIRE_EQUAL(game->isCastlingCorrectPublic(blackPlayer, "O-O-O"), false);
+    }
 
     /************************** isSquareAttacked() **************************/
 

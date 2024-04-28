@@ -46,11 +46,11 @@ std::string Board::toString() const {
     for(int x = 0; x < 8; x++) {
         for(int y = 0; y < 8; y++) {
             std::string abbr;
-            chessboard[x][y]->getPiece() == nullptr ? abbr = "()" : abbr = chessboard[x][y]->getPiece()->getAbbr();
-            result += abbr + " ";
-            //if(y != 7) result += " ";
+            chessboard[x][y]->getPiece() == nullptr ?
+            abbr = "[.]" : (abbr = chessboard[x][y]->getPiece()->getAbbr() + (chessboard[x][y]->getPiece()->isFirstMove() ? "1" : "0"));
+            result += abbr + "   ";
         }
-        result += "\n";
+        result += "\n\n";
     }
     return result;
 }

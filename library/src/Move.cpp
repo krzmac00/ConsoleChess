@@ -109,13 +109,13 @@ void Move::undo(PlayerPtr &player, BoardPtr &board) {
         board->getSquare(row, 4)->setPiece(king);
         king->setSquare(board->getSquare(row, 4));
         board->getSquare(row, 6)->setPiece(nullptr);
-        king->setFirstMove();
+        king->setFirstMove(true);
 
         PiecePtr rook = board->getSquare(row, 5)->getPiece();
         board->getSquare(row, 7)->setPiece(rook);
         rook->setSquare(board->getSquare(row, 7));
         board->getSquare(row, 5)->setPiece(nullptr);
-        rook->setFirstMove();
+        rook->setFirstMove(true);
     }
     else if(abbr == "O-O-O") {
         int row;
@@ -126,19 +126,19 @@ void Move::undo(PlayerPtr &player, BoardPtr &board) {
         board->getSquare(row, 4)->setPiece(king);
         king->setSquare(board->getSquare(row, 4));
         board->getSquare(row, 2)->setPiece(nullptr);
-        king->setFirstMove();
+        king->setFirstMove(true);
 
         PiecePtr rook = board->getSquare(row, 3)->getPiece();
         board->getSquare(row, 0)->setPiece(rook);
         rook->setSquare(board->getSquare(row, 0));
         board->getSquare(row, 3)->setPiece(nullptr);
-        rook->setFirstMove();
+        rook->setFirstMove(true);
     }
     else {
         PiecePtr piece = to->getPiece();
         from->setPiece(piece);
         piece->setSquare(from);
-        if(pieceFirstMove) piece->setFirstMove();
+        if(pieceFirstMove) piece->setFirstMove(true);
         if(capturedPiece != nullptr) {
             if(enPassant) {
                 SquarePtr squareOfCapturedPawn = board->getSquare(from->getRow(), to->getColumn());
