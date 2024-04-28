@@ -1,4 +1,0 @@
-C:\Windows\system32\wsl.exe --distribution pobi2024 --exec /bin/bash -c "export CLION_IDE=TRUE && export JETBRAINS_IDE=TRUE && cd /mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug && /usr/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G 'CodeBlocks - Unix Makefiles' /mnt/e/CLionProjects/angielskieSzachy"
--- Configuring done
--- Generating done
--- Build files have been written to: /mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug
