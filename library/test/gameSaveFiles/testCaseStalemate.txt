@@ -1,0 +1,15 @@
+() () () () () BK () ()
+() () () () () () BP ()
+() () () () () () () ()
+() () BP () () () () ()
+() () () () () () () ()
+() () () BQ () () () ()
+WK () () WP () () () ()
+() () () () () () BQ ()
+Save: Player_2
+Player_1 WHITE
+Player_2 BLACK
+C2-C4 D1-A4 A4-B5 B5-B7 B7-A8 A8-A7 A7-A3 A3-F8 E2-E3 F1-D3 D3-H7 H7-G8 E1-E2 G8-F7 F7-E6 E6-D5 D5-C6 C6-D7 D7-C8 F2-F4 E2-E1 E1-D1 C8-G4 D1-C1 C1-B1 B1-A1 A1-A2 A2-A1 A1-B2 B2-A2
+E7-E6 B7-B5 B8-C6 F8-B4 B4-A3 H7-H6 H8-H7 E8-F8 D8-G5 G5-G2 G2-H1 H1-G1 G1-H2 H2-E5 E5-B2 B2-A2 A2-A1 A1-B1 B1-C1 C1-C4 C4-F4 F4-E3 H6-H5 H5-G4 E2-D3 C7-C5 G4-G3 G3-G2 G2-G1
+BP BR BP BB BR BN BP BP BN BP BB
+WQ WP WR WN WP WP WP WR WN WB WP WP WP WB

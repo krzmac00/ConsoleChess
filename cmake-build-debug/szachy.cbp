@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="szachy"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\library\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\usr\;CMake Files\..\..\..\..\usr\lib\;CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\;CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\;CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\Boost-1.74.0\;CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\boost_headers-1.74.0\;CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\boost_unit_test_framework-1.74.0\;CMake Files\program\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j12 -f &quot;/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j12 -f &quot;/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j12 -f &quot;/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test">
+				<Option working_dir="/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j12 -f &quot;/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/Makefile&quot;  VERBOSE=1 test"/>
+					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j12 -f &quot;/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j12 -f &quot;/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j12 -f &quot;/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j12 -f &quot;/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j12 -f &quot;/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j12 -f &quot;/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j12 -f &quot;/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j12 -f &quot;/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Program">
+				<Option output="/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/program/Program" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/program"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/mnt/e/CLionProjects/angielskieSzachy/program/include"/>
+					<Add directory="/mnt/e/CLionProjects/angielskieSzachy/library/include"/>
+					<Add directory="/usr/include/c++/12"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/12"/>
+					<Add directory="/usr/include/c++/12/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/12/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j12 -f &quot;/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/program/Makefile&quot;  VERBOSE=1 Program"/>
+					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/program/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j12 -f &quot;/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/program/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j12 -f &quot;/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/program/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Program/fast">
+				<Option output="/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/program/Program" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/program"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/mnt/e/CLionProjects/angielskieSzachy/program/include"/>
+					<Add directory="/mnt/e/CLionProjects/angielskieSzachy/library/include"/>
+					<Add directory="/usr/include/c++/12"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/12"/>
+					<Add directory="/usr/include/c++/12/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/12/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j12 -f &quot;/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/program/Makefile&quot;  VERBOSE=1 Program/fast"/>
+					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/program/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j12 -f &quot;/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/program/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j12 -f &quot;/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/program/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Library">
+				<Option output="/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library/libLibrary.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/mnt/e/CLionProjects/angielskieSzachy/library/include"/>
+					<Add directory="/usr/include/c++/12"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/12"/>
+					<Add directory="/usr/include/c++/12/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/12/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j12 -f &quot;/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library/Makefile&quot;  VERBOSE=1 Library"/>
+					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j12 -f &quot;/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j12 -f &quot;/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Library/fast">
+				<Option output="/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library/libLibrary.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/mnt/e/CLionProjects/angielskieSzachy/library/include"/>
+					<Add directory="/usr/include/c++/12"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/12"/>
+					<Add directory="/usr/include/c++/12/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/12/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j12 -f &quot;/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library/Makefile&quot;  VERBOSE=1 Library/fast"/>
+					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j12 -f &quot;/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j12 -f &quot;/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="LibraryTest">
+				<Option output="/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library/LibraryTest" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add option="-DBOOST_UNIT_TEST_FRAMEWORK_DYN_LINK"/>
+					<Add directory="/mnt/e/CLionProjects/angielskieSzachy/library/include"/>
+					<Add directory="/usr/include/c++/12"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/12"/>
+					<Add directory="/usr/include/c++/12/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/12/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j12 -f &quot;/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library/Makefile&quot;  VERBOSE=1 LibraryTest"/>
+					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j12 -f &quot;/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j12 -f &quot;/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="LibraryTest/fast">
+				<Option output="/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library/LibraryTest" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add option="-DBOOST_UNIT_TEST_FRAMEWORK_DYN_LINK"/>
+					<Add directory="/mnt/e/CLionProjects/angielskieSzachy/library/include"/>
+					<Add directory="/usr/include/c++/12"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/12"/>
+					<Add directory="/usr/include/c++/12/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/12/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j12 -f &quot;/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library/Makefile&quot;  VERBOSE=1 LibraryTest/fast"/>
+					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j12 -f &quot;/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j12 -f &quot;/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="check">
+				<Option working_dir="/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j12 -f &quot;/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library/Makefile&quot;  VERBOSE=1 check"/>
+					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j12 -f &quot;/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j12 -f &quot;/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/mnt/e/CLionProjects/angielskieSzachy/library/src/Board.cpp">
+			<Option target="Library"/>
+		</Unit>
+		<Unit filename="/mnt/e/CLionProjects/angielskieSzachy/library/src/Exceptions/InputException.cpp">
+			<Option target="Library"/>
+		</Unit>
+		<Unit filename="/mnt/e/CLionProjects/angielskieSzachy/library/src/Figury/Goniec.cpp">
+			<Option target="Library"/>
+		</Unit>
+		<Unit filename="/mnt/e/CLionProjects/angielskieSzachy/library/src/Figury/Hetman.cpp">
+			<Option target="Library"/>
+		</Unit>
+		<Unit filename="/mnt/e/CLionProjects/angielskieSzachy/library/src/Figury/Krol.cpp">
+			<Option target="Library"/>
+		</Unit>
+		<Unit filename="/mnt/e/CLionProjects/angielskieSzachy/library/src/Figury/Pion.cpp">
+			<Option target="Library"/>
+		</Unit>
+		<Unit filename="/mnt/e/CLionProjects/angielskieSzachy/library/src/Figury/Skoczek.cpp">
+			<Option target="Library"/>
+		</Unit>
+		<Unit filename="/mnt/e/CLionProjects/angielskieSzachy/library/src/Figury/Wieza.cpp">
+			<Option target="Library"/>
+		</Unit>
+		<Unit filename="/mnt/e/CLionProjects/angielskieSzachy/library/src/Gra.cpp">
+			<Option target="Library"/>
+		</Unit>
+		<Unit filename="/mnt/e/CLionProjects/angielskieSzachy/library/src/Gracze/Czlowiek.cpp">
+			<Option target="Library"/>
+		</Unit>
+		<Unit filename="/mnt/e/CLionProjects/angielskieSzachy/library/src/Gracze/Komputer.cpp">
+			<Option target="Library"/>
+		</Unit>
+		<Unit filename="/mnt/e/CLionProjects/angielskieSzachy/library/src/Piece.cpp">
+			<Option target="Library"/>
+		</Unit>
+		<Unit filename="/mnt/e/CLionProjects/angielskieSzachy/library/src/PiecesCreator.cpp">
+			<Option target="Library"/>
+		</Unit>
+		<Unit filename="/mnt/e/CLionProjects/angielskieSzachy/library/src/Player.cpp">
+			<Option target="Library"/>
+		</Unit>
+		<Unit filename="/mnt/e/CLionProjects/angielskieSzachy/library/src/Ruch.cpp">
+			<Option target="Library"/>
+		</Unit>
+		<Unit filename="/mnt/e/CLionProjects/angielskieSzachy/library/src/Square.cpp">
+			<Option target="Library"/>
+		</Unit>
+		<Unit filename="/mnt/e/CLionProjects/angielskieSzachy/library/src/Szach.cpp">
+			<Option target="Library"/>
+		</Unit>
+		<Unit filename="/mnt/e/CLionProjects/angielskieSzachy/library/src/View.cpp">
+			<Option target="Library"/>
+		</Unit>
+		<Unit filename="/mnt/e/CLionProjects/angielskieSzachy/library/src/View/Prezentacja.cpp">
+			<Option target="Library"/>
+		</Unit>
+		<Unit filename="/mnt/e/CLionProjects/angielskieSzachy/library/test/EnumTest.cpp">
+			<Option target="LibraryTest"/>
+		</Unit>
+		<Unit filename="/mnt/e/CLionProjects/angielskieSzachy/library/test/FabrykaFigurTest.cpp">
+			<Option target="LibraryTest"/>
+		</Unit>
+		<Unit filename="/mnt/e/CLionProjects/angielskieSzachy/library/test/Figury/GoniecTest.cpp">
+			<Option target="LibraryTest"/>
+		</Unit>
+		<Unit filename="/mnt/e/CLionProjects/angielskieSzachy/library/test/Figury/HetmanTest.cpp">
+			<Option target="LibraryTest"/>
+		</Unit>
+		<Unit filename="/mnt/e/CLionProjects/angielskieSzachy/library/test/Figury/KrolTest.cpp">
+			<Option target="LibraryTest"/>
+		</Unit>
+		<Unit filename="/mnt/e/CLionProjects/angielskieSzachy/library/test/Figury/PionTest.cpp">
+			<Option target="LibraryTest"/>
+		</Unit>
+		<Unit filename="/mnt/e/CLionProjects/angielskieSzachy/library/test/Figury/SkoczekTest.cpp">
+			<Option target="LibraryTest"/>
+		</Unit>
+		<Unit filename="/mnt/e/CLionProjects/angielskieSzachy/library/test/Figury/WiezaTest.cpp">
+			<Option target="LibraryTest"/>
+		</Unit>
+		<Unit filename="/mnt/e/CLionProjects/angielskieSzachy/library/test/Gra/GraForTest.cpp">
+			<Option target="LibraryTest"/>
+		</Unit>
+		<Unit filename="/mnt/e/CLionProjects/angielskieSzachy/library/test/Gra/GraForTest.h">
+			<Option target="LibraryTest"/>
+		</Unit>
+		<Unit filename="/mnt/e/CLionProjects/angielskieSzachy/library/test/GraTest.cpp">
+			<Option target="LibraryTest"/>
+		</Unit>
+		<Unit filename="/mnt/e/CLionProjects/angielskieSzachy/library/test/Gracze/CzlowiekTest.cpp">
+			<Option target="LibraryTest"/>
+		</Unit>
+		<Unit filename="/mnt/e/CLionProjects/angielskieSzachy/library/test/Gracze/KomputerTest.cpp">
+			<Option target="LibraryTest"/>
+		</Unit>
+		<Unit filename="/mnt/e/CLionProjects/angielskieSzachy/library/test/PlanszaTest.cpp">
+			<Option target="LibraryTest"/>
+		</Unit>
+		<Unit filename="/mnt/e/CLionProjects/angielskieSzachy/library/test/PoleTest.cpp">
+			<Option target="LibraryTest"/>
+		</Unit>
+		<Unit filename="/mnt/e/CLionProjects/angielskieSzachy/library/test/RuchTest.cpp">
+			<Option target="LibraryTest"/>
+		</Unit>
+		<Unit filename="/mnt/e/CLionProjects/angielskieSzachy/library/test/SzachTest.cpp">
+			<Option target="LibraryTest"/>
+		</Unit>
+		<Unit filename="/mnt/e/CLionProjects/angielskieSzachy/library/test/View/PrezentacjaTest.cpp">
+			<Option target="LibraryTest"/>
+		</Unit>
+		<Unit filename="/mnt/e/CLionProjects/angielskieSzachy/library/test/View/PrezentacjaTest.h">
+			<Option target="LibraryTest"/>
+		</Unit>
+		<Unit filename="/mnt/e/CLionProjects/angielskieSzachy/library/test/master.cpp">
+			<Option target="LibraryTest"/>
+		</Unit>
+		<Unit filename="/mnt/e/CLionProjects/angielskieSzachy/program/src/main.cpp">
+			<Option target="Program"/>
+		</Unit>
+		<Unit filename="/mnt/e/CLionProjects/angielskieSzachy/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/mnt/e/CLionProjects/angielskieSzachy/library/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\library\"/>
+		</Unit>
+		<Unit filename="/mnt/e/CLionProjects/angielskieSzachy/../../../../usr/lib/x86_64-linux-gnu/cmake/BoostDetectToolset-1.74.0.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\"/>
+		</Unit>
+		<Unit filename="/mnt/e/CLionProjects/angielskieSzachy/../../../../usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\Boost-1.74.0\"/>
+		</Unit>
+		<Unit filename="/mnt/e/CLionProjects/angielskieSzachy/../../../../usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0/BoostConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\Boost-1.74.0\"/>
+		</Unit>
+		<Unit filename="/mnt/e/CLionProjects/angielskieSzachy/../../../../usr/lib/x86_64-linux-gnu/cmake/boost_headers-1.74.0/boost_headers-config-version.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\boost_headers-1.74.0\"/>
+		</Unit>
+		<Unit filename="/mnt/e/CLionProjects/angielskieSzachy/../../../../usr/lib/x86_64-linux-gnu/cmake/boost_headers-1.74.0/boost_headers-config.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\boost_headers-1.74.0\"/>
+		</Unit>
+		<Unit filename="/mnt/e/CLionProjects/angielskieSzachy/../../../../usr/lib/x86_64-linux-gnu/cmake/boost_unit_test_framework-1.74.0/boost_unit_test_framework-config-version.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\boost_unit_test_framework-1.74.0\"/>
+		</Unit>
+		<Unit filename="/mnt/e/CLionProjects/angielskieSzachy/../../../../usr/lib/x86_64-linux-gnu/cmake/boost_unit_test_framework-1.74.0/boost_unit_test_framework-config.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\boost_unit_test_framework-1.74.0\"/>
+		</Unit>
+		<Unit filename="/mnt/e/CLionProjects/angielskieSzachy/../../../../usr/lib/x86_64-linux-gnu/cmake/boost_unit_test_framework-1.74.0/libboost_unit_test_framework-variant-shared.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\boost_unit_test_framework-1.74.0\"/>
+		</Unit>
+		<Unit filename="/mnt/e/CLionProjects/angielskieSzachy/../../../../usr/lib/x86_64-linux-gnu/cmake/boost_unit_test_framework-1.74.0/libboost_unit_test_framework-variant-static.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\boost_unit_test_framework-1.74.0\"/>
+		</Unit>
+		<Unit filename="/mnt/e/CLionProjects/angielskieSzachy/program/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\program\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

@@ -1,0 +1,13 @@
+/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/CMakeFiles/test.dir
+/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/CMakeFiles/edit_cache.dir
+/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/program/CMakeFiles/Program.dir
+/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/program/CMakeFiles/test.dir
+/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/program/CMakeFiles/edit_cache.dir
+/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/program/CMakeFiles/rebuild_cache.dir
+/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library/CMakeFiles/Library.dir
+/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library/CMakeFiles/LibraryTest.dir
+/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library/CMakeFiles/check.dir
+/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library/CMakeFiles/test.dir
+/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library/CMakeFiles/edit_cache.dir
+/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library/CMakeFiles/rebuild_cache.dir

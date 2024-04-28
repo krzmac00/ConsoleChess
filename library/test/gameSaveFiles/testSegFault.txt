@@ -1,0 +1,15 @@
+() () () () () () () WR
+() () () () () () () ()
+WP () WB () () () () ()
+() () BP () WB () BK ()
+() () () () () () () WN
+() () () () () () () WP
+WP () () WP () WP BP WP
+() () () () WK () WR ()
+Save: Player_1
+Player_1 WHITE
+ComputerPlayer BLACK
+C2-C4 D1-A4 A4-A5 B1-C3 C3-E4 B2-B4 B4-A5 E4-F6 C1-A3 F6-D7 D7-F8 A3-C5 A5-A6 C4-D5 C5-D4 D4-E5 A1-C1 D5-D6 D6-E7 E2-E3 E3-F4 F4-G5 F1-B5 G2-H3 B5-E8 C1-C7 E8-C6 C7-A7 A7-A8 G1-F3 A8-H8 F3-H4 H1-G1
+C7-C6 H7-H6 B8-A6 E7-E6 D8-A5 G7-G6 F7-F5 E8-F7 F7-G7 H8-H7 C6-C5 A6-B4 B4-D5 B7-B5 E6-E5 G7-F8 G8-E7 F5-F4 H7-E7 G6-G5 E7-H7 H6-G5 C8-H3 A8-E8 H7-C7 F8-G8 G5-G4 G4-G3 G8-H7 H7-H6 H6-G6 G6-G5 G3-G2
+BQ BP BB BP BN BP BN BP BP BP BB BR BR BP
+WQ WN WP WP

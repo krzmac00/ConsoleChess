@@ -1,0 +1,197 @@
+[
+{
+  "directory": "/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/program",
+  "command": "/usr/bin/g++  -I/mnt/e/CLionProjects/angielskieSzachy/program/include -I/mnt/e/CLionProjects/angielskieSzachy/library/include -g3 -gdwarf-4 -Wall -Wextra -Werror -std=gnu++11 -o CMakeFiles/Program.dir/src/main.cpp.o -c /mnt/e/CLionProjects/angielskieSzachy/program/src/main.cpp",
+  "file": "/mnt/e/CLionProjects/angielskieSzachy/program/src/main.cpp"
+},
+{
+  "directory": "/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library",
+  "command": "/usr/bin/g++  -I/mnt/e/CLionProjects/angielskieSzachy/library/include -g3 -gdwarf-4 -Wall -Wextra -Werror -std=gnu++11 -o CMakeFiles/Library.dir/src/Piece.cpp.o -c /mnt/e/CLionProjects/angielskieSzachy/library/src/Piece.cpp",
+  "file": "/mnt/e/CLionProjects/angielskieSzachy/library/src/Piece.cpp"
+},
+{
+  "directory": "/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library",
+  "command": "/usr/bin/g++  -I/mnt/e/CLionProjects/angielskieSzachy/library/include -g3 -gdwarf-4 -Wall -Wextra -Werror -std=gnu++11 -o CMakeFiles/Library.dir/src/Game.cpp.o -c /mnt/e/CLionProjects/angielskieSzachy/library/src/Game.cpp",
+  "file": "/mnt/e/CLionProjects/angielskieSzachy/library/src/Game.cpp"
+},
+{
+  "directory": "/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library",
+  "command": "/usr/bin/g++  -I/mnt/e/CLionProjects/angielskieSzachy/library/include -g3 -gdwarf-4 -Wall -Wextra -Werror -std=gnu++11 -o CMakeFiles/Library.dir/src/Player.cpp.o -c /mnt/e/CLionProjects/angielskieSzachy/library/src/Player.cpp",
+  "file": "/mnt/e/CLionProjects/angielskieSzachy/library/src/Player.cpp"
+},
+{
+  "directory": "/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library",
+  "command": "/usr/bin/g++  -I/mnt/e/CLionProjects/angielskieSzachy/library/include -g3 -gdwarf-4 -Wall -Wextra -Werror -std=gnu++11 -o CMakeFiles/Library.dir/src/Players/ComputerPlayer.cpp.o -c /mnt/e/CLionProjects/angielskieSzachy/library/src/Players/ComputerPlayer.cpp",
+  "file": "/mnt/e/CLionProjects/angielskieSzachy/library/src/Players/ComputerPlayer.cpp"
+},
+{
+  "directory": "/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library",
+  "command": "/usr/bin/g++  -I/mnt/e/CLionProjects/angielskieSzachy/library/include -g3 -gdwarf-4 -Wall -Wextra -Werror -std=gnu++11 -o CMakeFiles/Library.dir/src/Players/HumanPlayer.cpp.o -c /mnt/e/CLionProjects/angielskieSzachy/library/src/Players/HumanPlayer.cpp",
+  "file": "/mnt/e/CLionProjects/angielskieSzachy/library/src/Players/HumanPlayer.cpp"
+},
+{
+  "directory": "/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library",
+  "command": "/usr/bin/g++  -I/mnt/e/CLionProjects/angielskieSzachy/library/include -g3 -gdwarf-4 -Wall -Wextra -Werror -std=gnu++11 -o CMakeFiles/Library.dir/src/Board.cpp.o -c /mnt/e/CLionProjects/angielskieSzachy/library/src/Board.cpp",
+  "file": "/mnt/e/CLionProjects/angielskieSzachy/library/src/Board.cpp"
+},
+{
+  "directory": "/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library",
+  "command": "/usr/bin/g++  -I/mnt/e/CLionProjects/angielskieSzachy/library/include -g3 -gdwarf-4 -Wall -Wextra -Werror -std=gnu++11 -o CMakeFiles/Library.dir/src/Square.cpp.o -c /mnt/e/CLionProjects/angielskieSzachy/library/src/Square.cpp",
+  "file": "/mnt/e/CLionProjects/angielskieSzachy/library/src/Square.cpp"
+},
+{
+  "directory": "/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library",
+  "command": "/usr/bin/g++  -I/mnt/e/CLionProjects/angielskieSzachy/library/include -g3 -gdwarf-4 -Wall -Wextra -Werror -std=gnu++11 -o CMakeFiles/Library.dir/src/View/ConsoleView.cpp.o -c /mnt/e/CLionProjects/angielskieSzachy/library/src/View/ConsoleView.cpp",
+  "file": "/mnt/e/CLionProjects/angielskieSzachy/library/src/View/ConsoleView.cpp"
+},
+{
+  "directory": "/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library",
+  "command": "/usr/bin/g++  -I/mnt/e/CLionProjects/angielskieSzachy/library/include -g3 -gdwarf-4 -Wall -Wextra -Werror -std=gnu++11 -o CMakeFiles/Library.dir/src/Pieces/Bishop.cpp.o -c /mnt/e/CLionProjects/angielskieSzachy/library/src/Pieces/Bishop.cpp",
+  "file": "/mnt/e/CLionProjects/angielskieSzachy/library/src/Pieces/Bishop.cpp"
+},
+{
+  "directory": "/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library",
+  "command": "/usr/bin/g++  -I/mnt/e/CLionProjects/angielskieSzachy/library/include -g3 -gdwarf-4 -Wall -Wextra -Werror -std=gnu++11 -o CMakeFiles/Library.dir/src/Pieces/Queen.cpp.o -c /mnt/e/CLionProjects/angielskieSzachy/library/src/Pieces/Queen.cpp",
+  "file": "/mnt/e/CLionProjects/angielskieSzachy/library/src/Pieces/Queen.cpp"
+},
+{
+  "directory": "/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library",
+  "command": "/usr/bin/g++  -I/mnt/e/CLionProjects/angielskieSzachy/library/include -g3 -gdwarf-4 -Wall -Wextra -Werror -std=gnu++11 -o CMakeFiles/Library.dir/src/Pieces/Knight.cpp.o -c /mnt/e/CLionProjects/angielskieSzachy/library/src/Pieces/Knight.cpp",
+  "file": "/mnt/e/CLionProjects/angielskieSzachy/library/src/Pieces/Knight.cpp"
+},
+{
+  "directory": "/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library",
+  "command": "/usr/bin/g++  -I/mnt/e/CLionProjects/angielskieSzachy/library/include -g3 -gdwarf-4 -Wall -Wextra -Werror -std=gnu++11 -o CMakeFiles/Library.dir/src/Pieces/King.cpp.o -c /mnt/e/CLionProjects/angielskieSzachy/library/src/Pieces/King.cpp",
+  "file": "/mnt/e/CLionProjects/angielskieSzachy/library/src/Pieces/King.cpp"
+},
+{
+  "directory": "/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library",
+  "command": "/usr/bin/g++  -I/mnt/e/CLionProjects/angielskieSzachy/library/include -g3 -gdwarf-4 -Wall -Wextra -Werror -std=gnu++11 -o CMakeFiles/Library.dir/src/Pieces/Pawn.cpp.o -c /mnt/e/CLionProjects/angielskieSzachy/library/src/Pieces/Pawn.cpp",
+  "file": "/mnt/e/CLionProjects/angielskieSzachy/library/src/Pieces/Pawn.cpp"
+},
+{
+  "directory": "/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library",
+  "command": "/usr/bin/g++  -I/mnt/e/CLionProjects/angielskieSzachy/library/include -g3 -gdwarf-4 -Wall -Wextra -Werror -std=gnu++11 -o CMakeFiles/Library.dir/src/Pieces/Rook.cpp.o -c /mnt/e/CLionProjects/angielskieSzachy/library/src/Pieces/Rook.cpp",
+  "file": "/mnt/e/CLionProjects/angielskieSzachy/library/src/Pieces/Rook.cpp"
+},
+{
+  "directory": "/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library",
+  "command": "/usr/bin/g++  -I/mnt/e/CLionProjects/angielskieSzachy/library/include -g3 -gdwarf-4 -Wall -Wextra -Werror -std=gnu++11 -o CMakeFiles/Library.dir/src/Exceptions/InputException.cpp.o -c /mnt/e/CLionProjects/angielskieSzachy/library/src/Exceptions/InputException.cpp",
+  "file": "/mnt/e/CLionProjects/angielskieSzachy/library/src/Exceptions/InputException.cpp"
+},
+{
+  "directory": "/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library",
+  "command": "/usr/bin/g++  -I/mnt/e/CLionProjects/angielskieSzachy/library/include -g3 -gdwarf-4 -Wall -Wextra -Werror -std=gnu++11 -o CMakeFiles/Library.dir/src/PiecesCreator.cpp.o -c /mnt/e/CLionProjects/angielskieSzachy/library/src/PiecesCreator.cpp",
+  "file": "/mnt/e/CLionProjects/angielskieSzachy/library/src/PiecesCreator.cpp"
+},
+{
+  "directory": "/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library",
+  "command": "/usr/bin/g++  -I/mnt/e/CLionProjects/angielskieSzachy/library/include -g3 -gdwarf-4 -Wall -Wextra -Werror -std=gnu++11 -o CMakeFiles/Library.dir/src/Move.cpp.o -c /mnt/e/CLionProjects/angielskieSzachy/library/src/Move.cpp",
+  "file": "/mnt/e/CLionProjects/angielskieSzachy/library/src/Move.cpp"
+},
+{
+  "directory": "/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library",
+  "command": "/usr/bin/g++  -I/mnt/e/CLionProjects/angielskieSzachy/library/include -g3 -gdwarf-4 -Wall -Wextra -Werror -std=gnu++11 -o CMakeFiles/Library.dir/src/Check.cpp.o -c /mnt/e/CLionProjects/angielskieSzachy/library/src/Check.cpp",
+  "file": "/mnt/e/CLionProjects/angielskieSzachy/library/src/Check.cpp"
+},
+{
+  "directory": "/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library",
+  "command": "/usr/bin/g++  -I/mnt/e/CLionProjects/angielskieSzachy/library/include -g3 -gdwarf-4 -Wall -Wextra -Werror -std=gnu++11 -o CMakeFiles/Library.dir/src/View.cpp.o -c /mnt/e/CLionProjects/angielskieSzachy/library/src/View.cpp",
+  "file": "/mnt/e/CLionProjects/angielskieSzachy/library/src/View.cpp"
+},
+{
+  "directory": "/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library",
+  "command": "/usr/bin/g++ -DBOOST_ALL_NO_LIB -DBOOST_UNIT_TEST_FRAMEWORK_DYN_LINK -I/mnt/e/CLionProjects/angielskieSzachy/library/include -g3 -gdwarf-4 -Wall -Wextra -Werror -std=gnu++11 -o CMakeFiles/LibraryTest.dir/test/master.cpp.o -c /mnt/e/CLionProjects/angielskieSzachy/library/test/master.cpp",
+  "file": "/mnt/e/CLionProjects/angielskieSzachy/library/test/master.cpp"
+},
+{
+  "directory": "/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library",
+  "command": "/usr/bin/g++ -DBOOST_ALL_NO_LIB -DBOOST_UNIT_TEST_FRAMEWORK_DYN_LINK -I/mnt/e/CLionProjects/angielskieSzachy/library/include -g3 -gdwarf-4 -Wall -Wextra -Werror -std=gnu++11 -o CMakeFiles/LibraryTest.dir/test/EnumTest.cpp.o -c /mnt/e/CLionProjects/angielskieSzachy/library/test/EnumTest.cpp",
+  "file": "/mnt/e/CLionProjects/angielskieSzachy/library/test/EnumTest.cpp"
+},
+{
+  "directory": "/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library",
+  "command": "/usr/bin/g++ -DBOOST_ALL_NO_LIB -DBOOST_UNIT_TEST_FRAMEWORK_DYN_LINK -I/mnt/e/CLionProjects/angielskieSzachy/library/include -g3 -gdwarf-4 -Wall -Wextra -Werror -std=gnu++11 -o CMakeFiles/LibraryTest.dir/test/Players/ComputerPlayerTest.cpp.o -c /mnt/e/CLionProjects/angielskieSzachy/library/test/Players/ComputerPlayerTest.cpp",
+  "file": "/mnt/e/CLionProjects/angielskieSzachy/library/test/Players/ComputerPlayerTest.cpp"
+},
+{
+  "directory": "/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library",
+  "command": "/usr/bin/g++ -DBOOST_ALL_NO_LIB -DBOOST_UNIT_TEST_FRAMEWORK_DYN_LINK -I/mnt/e/CLionProjects/angielskieSzachy/library/include -g3 -gdwarf-4 -Wall -Wextra -Werror -std=gnu++11 -o CMakeFiles/LibraryTest.dir/test/Players/HumanPlayerTest.cpp.o -c /mnt/e/CLionProjects/angielskieSzachy/library/test/Players/HumanPlayerTest.cpp",
+  "file": "/mnt/e/CLionProjects/angielskieSzachy/library/test/Players/HumanPlayerTest.cpp"
+},
+{
+  "directory": "/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library",
+  "command": "/usr/bin/g++ -DBOOST_ALL_NO_LIB -DBOOST_UNIT_TEST_FRAMEWORK_DYN_LINK -I/mnt/e/CLionProjects/angielskieSzachy/library/include -g3 -gdwarf-4 -Wall -Wextra -Werror -std=gnu++11 -o CMakeFiles/LibraryTest.dir/test/PiecesCreatorTest.cpp.o -c /mnt/e/CLionProjects/angielskieSzachy/library/test/PiecesCreatorTest.cpp",
+  "file": "/mnt/e/CLionProjects/angielskieSzachy/library/test/PiecesCreatorTest.cpp"
+},
+{
+  "directory": "/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library",
+  "command": "/usr/bin/g++ -DBOOST_ALL_NO_LIB -DBOOST_UNIT_TEST_FRAMEWORK_DYN_LINK -I/mnt/e/CLionProjects/angielskieSzachy/library/include -g3 -gdwarf-4 -Wall -Wextra -Werror -std=gnu++11 -o CMakeFiles/LibraryTest.dir/test/Pieces/PawnTest.cpp.o -c /mnt/e/CLionProjects/angielskieSzachy/library/test/Pieces/PawnTest.cpp",
+  "file": "/mnt/e/CLionProjects/angielskieSzachy/library/test/Pieces/PawnTest.cpp"
+},
+{
+  "directory": "/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library",
+  "command": "/usr/bin/g++ -DBOOST_ALL_NO_LIB -DBOOST_UNIT_TEST_FRAMEWORK_DYN_LINK -I/mnt/e/CLionProjects/angielskieSzachy/library/include -g3 -gdwarf-4 -Wall -Wextra -Werror -std=gnu++11 -o CMakeFiles/LibraryTest.dir/test/Pieces/BishopTest.cpp.o -c /mnt/e/CLionProjects/angielskieSzachy/library/test/Pieces/BishopTest.cpp",
+  "file": "/mnt/e/CLionProjects/angielskieSzachy/library/test/Pieces/BishopTest.cpp"
+},
+{
+  "directory": "/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library",
+  "command": "/usr/bin/g++ -DBOOST_ALL_NO_LIB -DBOOST_UNIT_TEST_FRAMEWORK_DYN_LINK -I/mnt/e/CLionProjects/angielskieSzachy/library/include -g3 -gdwarf-4 -Wall -Wextra -Werror -std=gnu++11 -o CMakeFiles/LibraryTest.dir/test/Pieces/KnightTest.cpp.o -c /mnt/e/CLionProjects/angielskieSzachy/library/test/Pieces/KnightTest.cpp",
+  "file": "/mnt/e/CLionProjects/angielskieSzachy/library/test/Pieces/KnightTest.cpp"
+},
+{
+  "directory": "/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library",
+  "command": "/usr/bin/g++ -DBOOST_ALL_NO_LIB -DBOOST_UNIT_TEST_FRAMEWORK_DYN_LINK -I/mnt/e/CLionProjects/angielskieSzachy/library/include -g3 -gdwarf-4 -Wall -Wextra -Werror -std=gnu++11 -o CMakeFiles/LibraryTest.dir/test/Pieces/RookTest.cpp.o -c /mnt/e/CLionProjects/angielskieSzachy/library/test/Pieces/RookTest.cpp",
+  "file": "/mnt/e/CLionProjects/angielskieSzachy/library/test/Pieces/RookTest.cpp"
+},
+{
+  "directory": "/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library",
+  "command": "/usr/bin/g++ -DBOOST_ALL_NO_LIB -DBOOST_UNIT_TEST_FRAMEWORK_DYN_LINK -I/mnt/e/CLionProjects/angielskieSzachy/library/include -g3 -gdwarf-4 -Wall -Wextra -Werror -std=gnu++11 -o CMakeFiles/LibraryTest.dir/test/Pieces/KingTest.cpp.o -c /mnt/e/CLionProjects/angielskieSzachy/library/test/Pieces/KingTest.cpp",
+  "file": "/mnt/e/CLionProjects/angielskieSzachy/library/test/Pieces/KingTest.cpp"
+},
+{
+  "directory": "/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library",
+  "command": "/usr/bin/g++ -DBOOST_ALL_NO_LIB -DBOOST_UNIT_TEST_FRAMEWORK_DYN_LINK -I/mnt/e/CLionProjects/angielskieSzachy/library/include -g3 -gdwarf-4 -Wall -Wextra -Werror -std=gnu++11 -o CMakeFiles/LibraryTest.dir/test/Pieces/QueenTest.cpp.o -c /mnt/e/CLionProjects/angielskieSzachy/library/test/Pieces/QueenTest.cpp",
+  "file": "/mnt/e/CLionProjects/angielskieSzachy/library/test/Pieces/QueenTest.cpp"
+},
+{
+  "directory": "/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library",
+  "command": "/usr/bin/g++ -DBOOST_ALL_NO_LIB -DBOOST_UNIT_TEST_FRAMEWORK_DYN_LINK -I/mnt/e/CLionProjects/angielskieSzachy/library/include -g3 -gdwarf-4 -Wall -Wextra -Werror -std=gnu++11 -o CMakeFiles/LibraryTest.dir/test/MoveTest.cpp.o -c /mnt/e/CLionProjects/angielskieSzachy/library/test/MoveTest.cpp",
+  "file": "/mnt/e/CLionProjects/angielskieSzachy/library/test/MoveTest.cpp"
+},
+{
+  "directory": "/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library",
+  "command": "/usr/bin/g++ -DBOOST_ALL_NO_LIB -DBOOST_UNIT_TEST_FRAMEWORK_DYN_LINK -I/mnt/e/CLionProjects/angielskieSzachy/library/include -g3 -gdwarf-4 -Wall -Wextra -Werror -std=gnu++11 -o CMakeFiles/LibraryTest.dir/test/BoardTest.cpp.o -c /mnt/e/CLionProjects/angielskieSzachy/library/test/BoardTest.cpp",
+  "file": "/mnt/e/CLionProjects/angielskieSzachy/library/test/BoardTest.cpp"
+},
+{
+  "directory": "/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library",
+  "command": "/usr/bin/g++ -DBOOST_ALL_NO_LIB -DBOOST_UNIT_TEST_FRAMEWORK_DYN_LINK -I/mnt/e/CLionProjects/angielskieSzachy/library/include -g3 -gdwarf-4 -Wall -Wextra -Werror -std=gnu++11 -o CMakeFiles/LibraryTest.dir/test/SquareTest.cpp.o -c /mnt/e/CLionProjects/angielskieSzachy/library/test/SquareTest.cpp",
+  "file": "/mnt/e/CLionProjects/angielskieSzachy/library/test/SquareTest.cpp"
+},
+{
+  "directory": "/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library",
+  "command": "/usr/bin/g++ -DBOOST_ALL_NO_LIB -DBOOST_UNIT_TEST_FRAMEWORK_DYN_LINK -I/mnt/e/CLionProjects/angielskieSzachy/library/include -g3 -gdwarf-4 -Wall -Wextra -Werror -std=gnu++11 -o CMakeFiles/LibraryTest.dir/test/CheckTest.cpp.o -c /mnt/e/CLionProjects/angielskieSzachy/library/test/CheckTest.cpp",
+  "file": "/mnt/e/CLionProjects/angielskieSzachy/library/test/CheckTest.cpp"
+},
+{
+  "directory": "/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library",
+  "command": "/usr/bin/g++ -DBOOST_ALL_NO_LIB -DBOOST_UNIT_TEST_FRAMEWORK_DYN_LINK -I/mnt/e/CLionProjects/angielskieSzachy/library/include -g3 -gdwarf-4 -Wall -Wextra -Werror -std=gnu++11 -o CMakeFiles/LibraryTest.dir/test/GameTest.cpp.o -c /mnt/e/CLionProjects/angielskieSzachy/library/test/GameTest.cpp",
+  "file": "/mnt/e/CLionProjects/angielskieSzachy/library/test/GameTest.cpp"
+},
+{
+  "directory": "/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library",
+  "command": "/usr/bin/g++ -DBOOST_ALL_NO_LIB -DBOOST_UNIT_TEST_FRAMEWORK_DYN_LINK -I/mnt/e/CLionProjects/angielskieSzachy/library/include -g3 -gdwarf-4 -Wall -Wextra -Werror -std=gnu++11 -o CMakeFiles/LibraryTest.dir/test/View/TestView.cpp.o -c /mnt/e/CLionProjects/angielskieSzachy/library/test/View/TestView.cpp",
+  "file": "/mnt/e/CLionProjects/angielskieSzachy/library/test/View/TestView.cpp"
+},
+{
+  "directory": "/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library",
+  "command": "/usr/bin/g++ -DBOOST_ALL_NO_LIB -DBOOST_UNIT_TEST_FRAMEWORK_DYN_LINK -I/mnt/e/CLionProjects/angielskieSzachy/library/include -g3 -gdwarf-4 -Wall -Wextra -Werror -std=gnu++11 -o CMakeFiles/LibraryTest.dir/test/Game/GameForTesting.cpp.o -c /mnt/e/CLionProjects/angielskieSzachy/library/test/Game/GameForTesting.cpp",
+  "file": "/mnt/e/CLionProjects/angielskieSzachy/library/test/Game/GameForTesting.cpp"
+},
+{
+  "directory": "/mnt/e/CLionProjects/angielskieSzachy/cmake-build-debug/library",
+  "command": "/usr/bin/g++ -DBOOST_ALL_NO_LIB -DBOOST_UNIT_TEST_FRAMEWORK_DYN_LINK -I/mnt/e/CLionProjects/angielskieSzachy/library/include -g3 -gdwarf-4 -Wall -Wextra -Werror -std=gnu++11 -o CMakeFiles/LibraryTest.dir/test/bugTest.cpp.o -c /mnt/e/CLionProjects/angielskieSzachy/library/test/bugTest.cpp",
+  "file": "/mnt/e/CLionProjects/angielskieSzachy/library/test/bugTest.cpp"
+}
+]
