@@ -29,7 +29,7 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteKomputer, TestSuiteComputerPlayerFixture)
         board->addPiece(PieceType::Pawn, computerBlack, 1, 0);
         board->addPiece(PieceType::Pawn, computerBlack, 1, 7);
 
-        MovePtr move = computerBlack->executeMove(board, view);
+        MovePtr move = computerBlack->getMove(board, view);
 
         bool expectedFromSquareCorrect = false;
         if (move->getFrom()->getRow() == 1 &&
@@ -41,7 +41,7 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteKomputer, TestSuiteComputerPlayerFixture)
         BOOST_REQUIRE_EQUAL(moveToExpectedRowWhenExecutedMovesLT4, true);
 
         BOOST_TEST(move->getTo() != move->getFrom());
-        MovePtr move2 = computerBlack->executeMove(board, view);
+        MovePtr move2 = computerBlack->getMove(board, view);
         bool areMovesDifferent = move->getTo() != move2->getTo() || move->getFrom() !=
                                                                     move2->getFrom();
         BOOST_TEST(areMovesDifferent == true);
@@ -54,7 +54,7 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteKomputer, TestSuiteComputerPlayerFixture)
         board->addPiece(PieceType::Pawn, computerWhite, 6, 0);
         board->addPiece(PieceType::Pawn, computerWhite, 6, 7);
 
-        MovePtr move = computerWhite->executeMove(board, view);
+        MovePtr move = computerWhite->getMove(board, view);
 
         bool expectedFromSquareCorrect = false;
         if (move->getFrom()->getRow() == 6 &&
@@ -66,7 +66,7 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteKomputer, TestSuiteComputerPlayerFixture)
         BOOST_REQUIRE_EQUAL(moveToExpectedRowWhenExecutedMovesLT4, true);
 
         BOOST_TEST(move->getTo() != move->getFrom());
-        MovePtr move2 = computerWhite->executeMove(board, view);
+        MovePtr move2 = computerWhite->getMove(board, view);
         bool areMovesDifferent = move->getTo() != move2->getTo() || move->getFrom() !=
                                                                 move2->getFrom();
         BOOST_TEST(areMovesDifferent == true);

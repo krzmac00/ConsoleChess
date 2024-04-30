@@ -2,11 +2,12 @@
 #define SZACHY_INPUTEXCEPTION_H
 
 #include <exception>
+#include <string>
 
 class InputException : public std::exception {
-    const char* message;
+    std::string message;
 public:
-    InputException(const char * msg);
+    InputException(std::string msg);
     const char * what() const noexcept override;
 };
 

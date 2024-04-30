@@ -8,7 +8,7 @@ class HumanPlayer final : public Player {
 public:
     HumanPlayer(std::string name, Color color);
     ~HumanPlayer() override;
-    MovePtr executeMove(BoardPtr, ViewPtr) override;
+    MovePtr getMove(BoardPtr, ViewPtr) override;
     PieceType promotion(ViewPtr) override;
 };
 

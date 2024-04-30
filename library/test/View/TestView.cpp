@@ -92,3 +92,5 @@ void TestView::displayDraw() const {}
 void TestView::displayCheckInfo([[maybe_unused]] PlayerPtr &player) const {}
 void TestView::displayMenu() const {}
 void TestView::displayPlayerMoves([[maybe_unused]] PlayerPtr &player) {}
+void TestView::displayError([[maybe_unused]] std::string message) const {}
+bool TestView::restartOrQuit() const {return true;}

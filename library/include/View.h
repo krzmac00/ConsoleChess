@@ -31,6 +31,8 @@ public:
     virtual std::string readFilePath() const = 0;
     virtual void displayMenu() const = 0;
     virtual void displayPlayerMoves(PlayerPtr& player) = 0;
+    virtual void displayError(std::string message) const = 0;
+    virtual bool restartOrQuit() const = 0;
 };
 
 #endif //CHESS_VIEW_H

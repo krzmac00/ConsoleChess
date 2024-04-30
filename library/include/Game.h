@@ -20,6 +20,7 @@ protected:
     void initializeGame();
 
     Event handleMove(PlayerPtr &player);
+
     bool isMoveCorrect(PlayerPtr &player, MovePtr &move);
     bool isCastlingCorrect(PlayerPtr &player, std::string castling);
     bool isSquareAttacked(PlayerPtr &player, SquarePtr square);

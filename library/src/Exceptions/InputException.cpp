@@ -1,8 +1,8 @@
 #include "Exceptions/InputException.h"
 
-InputException::InputException(const char *msg) : message(msg){}
+InputException::InputException(std::string msg) : message(msg){}
 
 const char *InputException::what() const noexcept {
-    return message;
+    return message.c_str();
 }
 

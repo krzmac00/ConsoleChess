@@ -32,6 +32,8 @@ public:
     std::string readFilePath() const override;
     void displayMenu() const override;
     void displayPlayerMoves(PlayerPtr &player) override;
+    void displayError(std::string message) const override;
+    bool restartOrQuit() const override;
 };
 
 #endif //CHESS_CONSOLEVIEW_H

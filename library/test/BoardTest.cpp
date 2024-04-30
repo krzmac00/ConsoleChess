@@ -141,14 +141,21 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteBoard, TestSuiteBoardFixture)
         //adding kings
         board->addPiece(PieceType::King, whitePlayer, 7, 4);
         board->addPiece(PieceType::King, blackPlayer, 0, 4);
-        std::string expectedPiecesPositions = "BR BN BB BQ BK BB BN BR \n"
-                                              "BP BP BP BP BP BP BP BP \n"
-                                              "() () () () () () () () \n"
-                                              "() () () () () () () () \n"
-                                              "() () () () () () () () \n"
-                                              "() () () () () () () () \n"
-                                              "WP WP WP WP WP WP WP WP \n"
-                                              "WR WN WB WQ WK WB WN WR \n";
+        std::string expectedPiecesPositions = "BR1   BN1   BB1   BQ1   BK1   BB1   BN1   BR1   \n\n"
+
+                                              "BP1   BP1   BP1   BP1   BP1   BP1   BP1   BP1   \n\n"
+
+                                              "[.]   [.]   [.]   [.]   [.]   [.]   [.]   [.]   \n\n"
+
+                                              "[.]   [.]   [.]   [.]   [.]   [.]   [.]   [.]   \n\n"
+
+                                              "[.]   [.]   [.]   [.]   [.]   [.]   [.]   [.]   \n\n"
+
+                                              "[.]   [.]   [.]   [.]   [.]   [.]   [.]   [.]   \n\n"
+
+                                              "WP1   WP1   WP1   WP1   WP1   WP1   WP1   WP1   \n\n"
+
+                                              "WR1   WN1   WB1   WQ1   WK1   WB1   WN1   WR1   \n\n";
         BOOST_TEST(expectedPiecesPositions == board->toString());
     }
 

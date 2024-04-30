@@ -12,6 +12,7 @@ class Piece;
 class View;
 class Move;
 class Check;
+class GameData;
 
 //Enumeration
 enum Color {
@@ -80,6 +81,7 @@ typedef std::weak_ptr<Piece> PieceWeakPtr;
 typedef std::shared_ptr<View> ViewPtr;
 typedef std::shared_ptr<Move> MovePtr;
 typedef std::shared_ptr<Check> CheckPtr;
+typedef std::shared_ptr<GameData> GameDataPtr;
 
 
 namespace utils {

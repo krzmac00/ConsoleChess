@@ -8,7 +8,7 @@ ComputerPlayer::ComputerPlayer(std::string name, Color color) : Player(name, col
 
 ComputerPlayer::~ComputerPlayer() = default;
 
-MovePtr ComputerPlayer::executeMove(BoardPtr board, [[maybe_unused]] ViewPtr view) {
+MovePtr ComputerPlayer::getMove(BoardPtr board, [[maybe_unused]] ViewPtr view) {
     unsigned long seed = utils::mix(clock(), time(nullptr), getpid());
     srand(seed);
     int toRow;

@@ -313,3 +313,14 @@ void ConsoleView::displayPlayerMoves(PlayerPtr &player) {
     }
     cout << endl;
 }
+
+void ConsoleView::displayError(std::string message) const {
+    cout << "ERROR: " << message;
+}
+
+bool ConsoleView::restartOrQuit() const {
+    std::string choice;
+    cout << "Restart(R) or quit(q)";
+    if(choice == "q" || choice == "Q") return false;
+    return true;
+}

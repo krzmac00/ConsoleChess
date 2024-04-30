@@ -8,7 +8,7 @@ class ComputerPlayer final : public Player, public std::enable_shared_from_this<
 public:
     ComputerPlayer(std::string name, Color color);
     ~ComputerPlayer() override;
-    MovePtr executeMove(BoardPtr, ViewPtr) override;
+    MovePtr getMove(BoardPtr, ViewPtr) override;
     PieceType promotion(ViewPtr) override;
 };
 

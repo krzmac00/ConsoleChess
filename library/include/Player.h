@@ -28,7 +28,7 @@ public:
     virtual void setKing(PiecePtr _king);
     virtual PiecePtr getKing() const;
 
-    virtual MovePtr executeMove(BoardPtr board, ViewPtr view) = 0;
+    virtual MovePtr getMove(BoardPtr board, ViewPtr view) = 0;
     virtual PieceType promotion(ViewPtr view) = 0;
     virtual void addMove(const std::string& move);
     virtual void addCapturedPiece(const std::string& piece);

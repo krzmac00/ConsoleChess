@@ -17,10 +17,17 @@ set(SOURCE_FILES
         src/Pieces/Pawn.cpp
         src/Pieces/Rook.cpp
         src/Exceptions/InputException.cpp
+        src/Exceptions/FileException.cpp
         src/PiecesCreator.cpp
         src/Move.cpp
         src/Check.cpp
         src/View.cpp
+        src/GameData.cpp
+        src/GameLogic.cpp
+        src/IController.cpp
+        src/Controllers/ConsoleController.cpp
+        src/GameReader.cpp
+        src/GameWriter.cpp
         )
 
 add_library(Library ${SOURCE_FILES})
