@@ -21,6 +21,7 @@ GameDataPtr GameReader::loadGame(std::string filePath) noexcept(false) {
         for (int j = 0; j < 8; j++)
             board->addSquare(i, j);
 
+    //board
     std::string line, table[8][8];
     for(int i = 0; i < 8; i++) {
         getline(file, line);
@@ -30,6 +31,7 @@ GameDataPtr GameReader::loadGame(std::string filePath) noexcept(false) {
         }
         getline(file, line);
     }
+
     //player that saves game
     getline(file, line);
     std::string temp, playerThatSaves;
@@ -40,10 +42,18 @@ GameDataPtr GameReader::loadGame(std::string filePath) noexcept(false) {
     getline(file, line);
     std::istringstream isstream1(line);
     std::string firstPlayer, color1, squareOfCheckingPiece1;
-    isstream1 >> firstPlayer >> color1 >> squareOfCheckingPiece1;
     Color colorOfPlayer1;
+    isstream1 >> firstPlayer >> color1 >> squareOfCheckingPiece1;
+    if(firstPlayer.empty()) {
+        file.close();
+        throw FileStructureException(filePath, "Player1 name");
+    }
     if(color1 == "WHITE") colorOfPlayer1 = WHITE;
-    else colorOfPlayer1 = BLACK;
+    else if(color1 == "BLACK")colorOfPlayer1 = BLACK;
+    else {
+        file.close();
+        throw FileStructureException(filePath, "Player1 color");
+    }
     player1 = std::make_shared<HumanPlayer>(firstPlayer, colorOfPlayer1);
 
     //player2
@@ -52,8 +62,16 @@ GameDataPtr GameReader::loadGame(std::string filePath) noexcept(false) {
     std::string secondPlayer, color2, squareOfCheckingPiece2;
     Color colorOfPlayer2;
     isstream2 >> secondPlayer >> color2 >> squareOfCheckingPiece2;
+    if(secondPlayer.empty()) {
+        file.close();
+        throw FileStructureException(filePath, "Player2 name");
+    }
     if(color2 == "WHITE") colorOfPlayer2 = WHITE;
-    else colorOfPlayer2 = BLACK;
+    else if(color2 == "BLACK") colorOfPlayer2 = BLACK;
+    else {
+        file.close();
+        throw FileStructureException(filePath, "Player2 color");
+    }
     if(secondPlayer == "ComputerPlayer") player2 = std::make_shared<ComputerPlayer>(secondPlayer, colorOfPlayer2);
     else player2 = std::make_shared<HumanPlayer>(secondPlayer, colorOfPlayer2);
 
@@ -89,6 +107,7 @@ GameDataPtr GameReader::loadGame(std::string filePath) noexcept(false) {
         capturedPieces2 >> buf;
         player2->addCapturedPiece(buf);
     }
+
     file.close();
 
     //adding pieces
@@ -103,11 +122,16 @@ GameDataPtr GameReader::loadGame(std::string filePath) noexcept(false) {
         white = player2;
         black = player1;
     }
+
     for(int i = 0; i < 8; i++) {
         for(int j = 0; j < 8; j++) {
+            if(table[i][j].length() != 3) {
+                throw FileStructureException(filePath,
+                                             "square("+ std::to_string(i)+","+std::to_string(j)+")");
+            }
             if(table[i][j][0] != '[') {
                 if(table[i][j][0] == 'B') owner = black;
-                if(table[i][j][0] == 'W') owner = white;
+                else if(table[i][j][0] == 'W') owner = white;
                 switch(table[i][j][1]) {
                     case 'P':
                         board->addPiece(PieceType::Pawn, owner, i, j);

@@ -5,7 +5,7 @@
 #include <string>
 
 class FileException : public std::exception {
-    std::string message;
+    std::string fileName;
 public:
     FileException(std::string fileName);
     const char* what() const noexcept override;

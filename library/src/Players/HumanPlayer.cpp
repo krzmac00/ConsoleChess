@@ -7,7 +7,7 @@ HumanPlayer::~HumanPlayer() = default;
 
 MovePtr HumanPlayer::getMove(BoardPtr board, ViewPtr view) {
     std::string move = view->readMove(this->getColor());
-    if(move.size() == 1) return std::make_shared<Move>(move);
+    if(move.size() == 1) return nullptr;
     return std::make_shared<Move>(move, board);
 }
 

@@ -3,6 +3,7 @@
 
 #include "typedefs.h"
 #include "Exceptions/FileException.h"
+#include "Exceptions/FileStructureException.h"
 
 class GameReader {
 public:

@@ -5,6 +5,9 @@ set(CMAKE_C_COMPILER gcc)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+set(CMAKE_CXX_FLAGS "-fprofile-arcs -ftest-coverage")
+set(CMAKE_C_FLAGS "-fprofile-arcs -ftest-coverage")
+
 add_compile_options(-Wall -Wextra -Werror)
 
 

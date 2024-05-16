@@ -1,6 +1,5 @@
 #include "View/ConsoleView.h"
 #include "typedefs.h"
-#include "Game.h"
 #include "Controllers/ConsoleController.h"
 
 
@@ -15,7 +14,7 @@ int main() {
 //    }
     ConsoleController controller(consoleView);
     bool play = true;
-    while(play){
+    while(play) {
         play = controller.play();
     }
     return 0;

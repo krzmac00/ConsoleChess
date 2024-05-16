@@ -14,17 +14,17 @@ private:
     void displayColumnNames() const override;
     void displayHorizontalEdge() const override;
     void displayRow(BoardPtr &board, int row, std::string info) const override;
-    void displayBoard(BoardPtr &board, PlayerPtr &player1, PlayerPtr &player2) const override;
+    void displayBoard(GameDataPtr gameData) const override;
     void displayCapturedPieces(PlayerPtr &player1, PlayerPtr &player2) const override;
     void displayEndGameMenu() const override;
 public:
     ConsoleView();
-    void displayDefView(BoardPtr &board, PlayerPtr &player1, PlayerPtr &player2) override;
+    void displayDefView(GameDataPtr gameData) override;
     bool readIfNewGame() const override;
-    bool readUserChoice() const override;
+    bool readIfPlayWithComputer() const override;
     void displayWinner(PlayerPtr winner) const override;
     void displayDraw() const override;
-    Color readUserChoiceOfColor() const override;
+    Color readChoiceOfColor() const override;
     std::string readMove(Color color) override;
     PieceType readPromotionChoice() override;
     void displayCheckInfo(PlayerPtr &player) const override;

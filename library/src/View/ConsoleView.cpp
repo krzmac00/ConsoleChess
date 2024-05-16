@@ -2,6 +2,7 @@
 #include "Board.h"
 #include "Exceptions/InputException.h"
 #include "Player.h"
+#include "GameData.h"
 #include <iostream>
 #include <vector>
 #include <cstdlib>
@@ -36,17 +37,18 @@ void ConsoleView::displayRow(BoardPtr &board, int row, string info) const {
     displayHorizontalEdge();
 }
 
-void ConsoleView::displayBoard(BoardPtr &board, PlayerPtr &player1, PlayerPtr &player2) const {
+void ConsoleView::displayBoard(GameDataPtr gameData) const {
+    BoardPtr board = gameData->getBoard();
     PlayerPtr white;
     PlayerPtr black;
     string space = "   ";
-    if (player1->getColor() == WHITE) {
-        white = player1;
-        black = player2;
+    if (gameData->getPlayer1()->getColor() == WHITE) {
+        white = gameData->getPlayer1();
+        black = gameData->getPlayer2();
     }
     else {
-        white = player2;
-        black = player1;
+        white = gameData->getPlayer2();
+        black = gameData->getPlayer1();
     }
     string blackPlayer = "BLACK: " + black->getName();
     string blackMove = "Last move: " + black->getLastMove();
@@ -86,15 +88,17 @@ void ConsoleView::displayCapturedPieces(PlayerPtr &player1, PlayerPtr &player2) 
     }
 }
 
-void ConsoleView::displayDefView(BoardPtr &board, PlayerPtr &player1, PlayerPtr &player2) {
-    displayBoard(board, player1, player2);
+void ConsoleView::displayDefView(GameDataPtr gameData) {
+    PlayerPtr player1 = gameData->getPlayer1();
+    PlayerPtr player2 = gameData->getPlayer2();
+    displayBoard(gameData);
     displayCapturedPieces(player1, player2);
     cout << "(M)enu" << endl;
     if(player1->isInCheck()) displayCheckInfo(player1);
     else if (player2->isInCheck()) displayCheckInfo(player2);
 }
 
-bool ConsoleView::readUserChoice() const {
+bool ConsoleView::readIfPlayWithComputer() const {
     string choice;
     bool playWithComputer;
     bool error = true;
@@ -121,7 +125,7 @@ bool ConsoleView::readUserChoice() const {
     return playWithComputer;
 }
 
-Color ConsoleView::readUserChoiceOfColor() const {
+Color ConsoleView::readChoiceOfColor() const {
     string choice;
     Color color;
     bool error = true;

@@ -5,7 +5,7 @@
 
 class PiecesCreator {
 public:
-    static PiecePtr create(PieceType rodzaj, PlayerPtr gracz, SquarePtr pole);
+    static PiecePtr create(PieceType type, PlayerPtr player, SquarePtr square);
 };
 
 #endif //CHESS_PIECESCREATOR_H

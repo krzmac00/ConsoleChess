@@ -12,11 +12,11 @@ bool TestView::readIfNewGame() const {
     return newGame;
 }
 
-bool TestView::readUserChoice() const {
+bool TestView::readIfPlayWithComputer() const {
     return gameWithComputer;
 }
 
-Color TestView::readUserChoiceOfColor() const {
+Color TestView::readChoiceOfColor() const {
     return player1Color;
 }
 
@@ -83,10 +83,10 @@ void TestView::setFilePath(const std::string &path) {
 void TestView::displayColumnNames() const {}
 void TestView::displayHorizontalEdge() const {}
 void TestView::displayRow([[maybe_unused]] BoardPtr &board, [[maybe_unused]] int row, [[maybe_unused]] std::string info) const {}
-void TestView::displayBoard([[maybe_unused]] BoardPtr &board, [[maybe_unused]] PlayerPtr &player1, [[maybe_unused]] PlayerPtr &player2) const {}
+void TestView::displayBoard([[maybe_unused]] GameDataPtr gameData) const {}
 void TestView::displayCapturedPieces([[maybe_unused]] PlayerPtr &player1, [[maybe_unused]] PlayerPtr &player2) const {}
 void TestView::displayEndGameMenu() const {}
-void TestView::displayDefView([[maybe_unused]] BoardPtr &board, [[maybe_unused]] PlayerPtr &player1, [[maybe_unused]] PlayerPtr &player2) {}
+void TestView::displayDefView([[maybe_unused]] GameDataPtr gameData) {}
 void TestView::displayWinner([[maybe_unused]] PlayerPtr winner) const {}
 void TestView::displayDraw() const {}
 void TestView::displayCheckInfo([[maybe_unused]] PlayerPtr &player) const {}

@@ -1,6 +1,4 @@
 #include "GameData.h"
-#include "Players/HumanPlayer.h"
-#include "Players/ComputerPlayer.h"
 
 GameData::GameData(BoardPtr& board, PlayerPtr& player1, PlayerPtr& player2, PlayerPtr& playerTurn) :
     board(board),

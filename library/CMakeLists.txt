@@ -3,7 +3,6 @@ project(library)
 
 set(SOURCE_FILES
         src/Piece.cpp
-        src/Game.cpp
         src/Player.cpp
         src/Players/ComputerPlayer.cpp
         src/Players/HumanPlayer.cpp
@@ -18,6 +17,8 @@ set(SOURCE_FILES
         src/Pieces/Rook.cpp
         src/Exceptions/InputException.cpp
         src/Exceptions/FileException.cpp
+        src/Exceptions/FileAccessException.cpp
+        src/Exceptions/FileStructureException.cpp
         src/PiecesCreator.cpp
         src/Move.cpp
         src/Check.cpp
@@ -58,10 +59,8 @@ set(SOURCE_TEST_FILES
         test/BoardTest.cpp
         test/SquareTest.cpp
         test/CheckTest.cpp
-        test/GameTest.cpp
         test/View/TestView.cpp
-        test/Game/GameForTesting.cpp
-        test/bugTest.cpp
+        test/GameReaderTest.cpp
         )
 
 add_executable (LibraryTest ${SOURCE_TEST_FILES})

@@ -10,8 +10,8 @@ ConsoleController::ConsoleController(ViewPtr view) : IController(view) {}
 bool ConsoleController::play() {
 
     if(view->readIfNewGame()) {
-        bool playWithComputer = view->readUserChoice();
-        Color player1Color = view->readUserChoiceOfColor();
+        bool playWithComputer = view->readIfPlayWithComputer();
+        Color player1Color = view->readChoiceOfColor();
         this->gameData = GameLogic::initializeGame(player1Color, playWithComputer);
     }
     else {
@@ -38,11 +38,10 @@ bool ConsoleController::play() {
         }
         else otherPlayer = player1;
 
-        view->displayDefView(board, player1, player2);
+        view->displayDefView(gameData);
         Event event = this->handleMove();
         view->setError(false);
         if(event == Event::quit) return false;
-        if(event == Event::closeMenu) continue;
         //if(event == Event::Move)
 
         playerTurn->cancelCheck();
@@ -51,14 +50,14 @@ bool ConsoleController::play() {
         if(checkingPiece != nullptr) otherPlayer->setCheck(checkingPiece);
 
         if(GameLogic::isCheckmate(otherPlayer, gameData)) {
-            view->displayDefView(board, player1, player2);
+            view->displayDefView(gameData);
             view->displayWinner(playerTurn);
             std::string option = view->readUserChoiceOfMenuOption();
             if(option == "N") return true;
             else return false;
         }
         else if(GameLogic::isStalemate(otherPlayer, gameData)) {
-            view->displayDefView(board, player1, player2);
+            view->displayDefView(gameData);
             view->displayDraw();
             std::string option = view->readUserChoiceOfMenuOption();
             if(option == "N") return true;
@@ -73,27 +72,27 @@ Event ConsoleController::handleMove() {
     BoardPtr board = gameData->getBoard();
     PlayerPtr player = gameData->getPlayerTurn();
     MovePtr move;
-    bool isCorrect;
+    bool isCorrect = false;
     do {
-        bool menu = false;
         move = player->getMove(board, view);
-        if(move->getAbbr() == "M") {
-            view->displayMenu();
-            std::string option = view->readUserChoiceOfMenuOption();
-            if     (option == "D") view->displayPlayerMoves(player);
-            else if(option == "S") {
-                try {
-                    GameWriter::saveGame(gameData, view->readFilePath());
+        if(move == nullptr) {
+            while(true) {
+                view->displayMenu();
+                std::string option = view->readUserChoiceOfMenuOption();
+                if (option == "D") view->displayPlayerMoves(player);
+                else if(option == "S") {
+                    try {
+                        GameWriter::saveGame(gameData, view->readFilePath());
+                    }
+                    catch (FileException &e) {
+                        view->displayError(e.what());
+                    }
                 }
-                catch (FileException &e) {
-                    view->displayError(e.what());
-                }
+                else if(option == "Q") return Event::quit;
+                else break;
             }
-            else if(option == "Q") return Event::quit;
-            else                  return Event::closeMenu;
-            menu = true;
         }
-        if(!menu) {
+        else {
             if(move->getAbbr() == "O-O" || move->getAbbr() == "O-O-O")
                 isCorrect = GameLogic::isCastlingCorrect(player, move->getAbbr(), gameData);
             else isCorrect = GameLogic::isMoveCorrect(player, move, gameData);

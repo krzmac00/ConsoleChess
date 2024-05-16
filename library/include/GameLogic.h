@@ -19,7 +19,7 @@ public:
     static bool isCheckmate(PlayerPtr &player, GameDataPtr gameData);
     static bool canCheckingPieceBeCaptured(PlayerPtr &playerInCheck, GameDataPtr gameData);
     static bool canKingBeMoved(PlayerPtr &player, GameDataPtr gameData);
-    static bool canCheckBeBlocked(PlayerPtr &player, GameDataPtr gameData);
+    static bool canCheckBeBlocked(PlayerPtr &playerInCheck, GameDataPtr gameData);
 
     static bool isStalemate(PlayerPtr &player, GameDataPtr gameData);
 };
