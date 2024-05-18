@@ -6,12 +6,12 @@
 #include "Player.h"
 
 class GameData {
-    BoardPtr board;
-    PlayerPtr player1;
-    PlayerPtr player2;
-    PlayerPtr playerTurn;
+    const BoardPtr board;
+    const PlayerPtr player1;
+    const PlayerPtr player2;
+    PlayerPtr& playerTurn;
 public:
-    GameData(BoardPtr& board, PlayerPtr& player1, PlayerPtr& player2, PlayerPtr& playerTurn);
+    GameData(const BoardPtr& board, const PlayerPtr& player1, const PlayerPtr& player2, PlayerPtr& playerTurn);
 
     const BoardPtr &getBoard() const;
     const PlayerPtr &getPlayer1() const;

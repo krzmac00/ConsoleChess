@@ -17,8 +17,8 @@ public:
     Move(SquarePtr from, SquarePtr to);
     Move(std::string move, BoardPtr& board);
     Move(std::string move);
-    void execute(PlayerPtr &player, BoardPtr &board);
-    void undo(PlayerPtr &player, BoardPtr &board);
+    void execute(const PlayerPtr &player, BoardPtr &board);
+    void undo(const PlayerPtr &player, BoardPtr &board);
     std::string getAbbr();
     const SquarePtr &getFrom() const;
     const SquarePtr &getTo() const;

@@ -31,7 +31,7 @@ public:
     std::string readUserChoiceOfMenuOption() const override;
     std::string readFilePath() const override;
     void displayMenu() const override;
-    void displayPlayerMoves(PlayerPtr &player) override;
+    void displayPlayerMoves(const PlayerPtr &player) override;
     void displayError(std::string message) const override;
     bool restartOrQuit() const override;
 };

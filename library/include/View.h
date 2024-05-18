@@ -29,7 +29,7 @@ public:
     virtual void setError(bool _error);
     virtual std::string readFilePath() const = 0;
     virtual void displayMenu() const = 0;
-    virtual void displayPlayerMoves(PlayerPtr& player) = 0;
+    virtual void displayPlayerMoves(const PlayerPtr& player) = 0;
     virtual void displayError(std::string message) const = 0;
     virtual bool restartOrQuit() const = 0;
 };

@@ -70,7 +70,7 @@ bool ConsoleController::play() {
 
 Event ConsoleController::handleMove() {
     BoardPtr board = gameData->getBoard();
-    PlayerPtr player = gameData->getPlayerTurn();
+    const PlayerPtr& player = gameData->getPlayerTurn();
     MovePtr move;
     bool isCorrect = false;
     do {

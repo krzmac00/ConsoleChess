@@ -1,10 +1,10 @@
 #include "GameData.h"
 
-GameData::GameData(BoardPtr& board, PlayerPtr& player1, PlayerPtr& player2, PlayerPtr& playerTurn) :
+GameData::GameData(const BoardPtr& board, const PlayerPtr& player1, const PlayerPtr& player2, PlayerPtr& playerTurn) :
     board(board),
     player1(player1),
     player2(player2),
-    playerTurn(playerTurn) {}
+    playerTurn(playerTurn == player1 ? const_cast<PlayerPtr&>(this->player1) : const_cast<PlayerPtr&>(this->player2)) {}
 
 const BoardPtr &GameData::getBoard() const {
     return board;

@@ -66,7 +66,7 @@ GameDataPtr GameLogic::initializeGame(Color player1Color, bool playWithComputer)
 }
 
 
-bool GameLogic::isMoveCorrect(PlayerPtr &player, MovePtr &move, GameDataPtr gameData) {
+bool GameLogic::isMoveCorrect(const PlayerPtr &player, MovePtr &move, GameDataPtr gameData) {
     BoardPtr board = gameData->getBoard();
     if(move->getFrom() == move->getTo()) return false;
     PiecePtr piece = move->getFrom()->getPiece();
@@ -83,7 +83,7 @@ bool GameLogic::isMoveCorrect(PlayerPtr &player, MovePtr &move, GameDataPtr game
 }
 
 
-bool GameLogic::isPlayerInCheckAfterMove(PlayerPtr &player, MovePtr &move, GameDataPtr gameData) {
+bool GameLogic::isPlayerInCheckAfterMove(const PlayerPtr &player, MovePtr &move, GameDataPtr gameData) {
     BoardPtr board = gameData->getBoard();
     move->execute(player, board);
     if(GameLogic::getCheckingPiece(player, gameData) != nullptr) {
@@ -97,7 +97,7 @@ bool GameLogic::isPlayerInCheckAfterMove(PlayerPtr &player, MovePtr &move, GameD
 }
 
 
-PiecePtr GameLogic::getCheckingPiece(PlayerPtr &playerInCheck, GameDataPtr gameData) {
+PiecePtr GameLogic::getCheckingPiece(const PlayerPtr &playerInCheck, GameDataPtr gameData) {
     BoardPtr board = gameData->getBoard();
     PlayerPtr player1 = gameData->getPlayer1();
     PlayerPtr player2 = gameData->getPlayer2();
@@ -116,7 +116,7 @@ PiecePtr GameLogic::getCheckingPiece(PlayerPtr &playerInCheck, GameDataPtr gameD
 }
 
 
-bool GameLogic::isCastlingCorrect(PlayerPtr &player, std::string castling, GameDataPtr gameData) {
+bool GameLogic::isCastlingCorrect(const PlayerPtr &player, std::string castling, GameDataPtr gameData) {
     BoardPtr board = gameData->getBoard();
     if(player->isInCheck()) return false;
     if(!player->getKing()->isFirstMove()) return false;
@@ -166,7 +166,7 @@ bool GameLogic::isCastlingCorrect(PlayerPtr &player, std::string castling, GameD
 }
 
 
-bool GameLogic::isSquareAttacked(PlayerPtr &player, SquarePtr square, GameDataPtr gameData) {
+bool GameLogic::isSquareAttacked(const PlayerPtr &player, SquarePtr square, GameDataPtr gameData) {
     BoardPtr board = gameData->getBoard();
     PlayerPtr player1 = gameData->getPlayer1();
     PlayerPtr player2 = gameData->getPlayer2();
@@ -214,7 +214,7 @@ void GameLogic::promotePawn(PieceType piece, SquarePtr pawnSquare, GameDataPtr g
 
 //==================================================== CHECKMATE =======================================================
 
-bool GameLogic::isCheckmate(PlayerPtr &player, GameDataPtr gameData) {
+bool GameLogic::isCheckmate(const PlayerPtr &player, GameDataPtr gameData) {
     if(!player->isInCheck()) return false;
     if(GameLogic::canCheckingPieceBeCaptured(player, gameData)) return false;
     if(GameLogic::canKingBeMoved(player, gameData)) return false;
@@ -222,7 +222,7 @@ bool GameLogic::isCheckmate(PlayerPtr &player, GameDataPtr gameData) {
     return true;
 }
 
-bool GameLogic::canCheckingPieceBeCaptured(PlayerPtr &playerInCheck, GameDataPtr gameData) {
+bool GameLogic::canCheckingPieceBeCaptured(const PlayerPtr &playerInCheck, GameDataPtr gameData) {
     BoardPtr board = gameData->getBoard();
     SquarePtr squareOfCheckingPiece = playerInCheck->getCheck()->getCheckingPiece()->getSquare();
     for(auto &piece : board->getPiecesOfPlayer(playerInCheck)) {
@@ -236,7 +236,7 @@ bool GameLogic::canCheckingPieceBeCaptured(PlayerPtr &playerInCheck, GameDataPtr
     return false;
 }
 
-bool GameLogic::canKingBeMoved(PlayerPtr &player, GameDataPtr gameData) {
+bool GameLogic::canKingBeMoved(const PlayerPtr &player, GameDataPtr gameData) {
     BoardPtr board = gameData->getBoard();
     int kingRow = player->getKing()->getSquare()->getRow();
     int kingColumn = player->getKing()->getSquare()->getColumn();
@@ -256,7 +256,7 @@ bool GameLogic::canKingBeMoved(PlayerPtr &player, GameDataPtr gameData) {
     return false;
 }
 
-bool GameLogic::canCheckBeBlocked(PlayerPtr &playerInCheck, GameDataPtr gameData) {
+bool GameLogic::canCheckBeBlocked(const PlayerPtr &playerInCheck, GameDataPtr gameData) {
     BoardPtr board = gameData->getBoard();
 
     int kingRow = playerInCheck->getKing()->getSquare()->getRow();
@@ -444,7 +444,7 @@ bool GameLogic::canCheckBeBlocked(PlayerPtr &playerInCheck, GameDataPtr gameData
 
 //==================================================== STALEMATE =======================================================
 
-bool GameLogic::isStalemate(PlayerPtr &player, GameDataPtr gameData) {
+bool GameLogic::isStalemate(const PlayerPtr &player, GameDataPtr gameData) {
     BoardPtr board = gameData->getBoard();
     for(auto &piece : board->getPiecesOfPlayer(player)) {
         SquarePtr pieceSquare = piece->getSquare();

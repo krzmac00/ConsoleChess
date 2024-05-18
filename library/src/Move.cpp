@@ -38,7 +38,7 @@ std::string Move::toString() {
     return move;
 }
 
-void Move::execute(PlayerPtr &player, BoardPtr &board) {
+void Move::execute(const PlayerPtr &player, BoardPtr &board) {
     if(executed) return;
     if(abbr == "O-O") {
         int row;
@@ -98,7 +98,7 @@ void Move::execute(PlayerPtr &player, BoardPtr &board) {
     executed = true;
 }
 
-void Move::undo(PlayerPtr &player, BoardPtr &board) {
+void Move::undo(const PlayerPtr &player, BoardPtr &board) {
     if(!executed) return;
     if(abbr == "O-O") {
         int row;

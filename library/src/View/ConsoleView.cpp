@@ -309,7 +309,7 @@ std::string ConsoleView::readFilePath() const {
     return path;
 }
 
-void ConsoleView::displayPlayerMoves(PlayerPtr &player) {
+void ConsoleView::displayPlayerMoves(const PlayerPtr &player) {
     cout << "Player moves: ";
     vector<string> moves = player->getMoves();
     for(auto &move : moves) {
