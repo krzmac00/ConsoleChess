@@ -1,12 +1,13 @@
 #include "Move.h"
 #include "Board.h"
 #include "Player.h"
+#include "GameData.h"
 
-Move::Move(SquarePtr from, SquarePtr to) : from(from), to(to) {
+Move::Move(SquarePtr from, SquarePtr to, PlayerPtr player) : from(from), to(to), player(player){
     abbr = this->toString();
 }
 
-Move::Move(std::string move, BoardPtr &board) {
+Move::Move(std::string move, BoardPtr &board, PlayerPtr player) : player(player) {
     int fromRow = 8 - (move[1] - '0');
     char fromColumn = move[0] - 'A';
     int toRow = 8 - (move[4] - '0');
@@ -16,7 +17,7 @@ Move::Move(std::string move, BoardPtr &board) {
     abbr = this->toString();
 }
 
-Move::Move(std::string move) {
+Move::Move(std::string move, PlayerPtr player) : player(player) {
     abbr = move;
 }
 
@@ -38,11 +39,13 @@ std::string Move::toString() {
     return move;
 }
 
-void Move::execute(const PlayerPtr &player, BoardPtr &board) {
+void Move::execute(GameDataPtr &gameData) {
     if(executed) return;
+    if(player.lock() == nullptr) return;
+    BoardPtr board = gameData->getBoard();
     if(abbr == "O-O") {
         int row;
-        if(player->getColor() == WHITE) row = 7;
+        if(player.lock()->getColor() == WHITE) row = 7;
         else row = 0;
 
         PiecePtr king = board->getSquare(row, 4)->getPiece();
@@ -57,7 +60,7 @@ void Move::execute(const PlayerPtr &player, BoardPtr &board) {
     }
     else if(abbr == "O-O-O") {
         int row;
-        if(player->getColor() == WHITE) row = 7;
+        if(player.lock()->getColor() == WHITE) row = 7;
         else row = 0;
 
         PiecePtr king = board->getSquare(row, 4)->getPiece();
@@ -74,7 +77,7 @@ void Move::execute(const PlayerPtr &player, BoardPtr &board) {
         pieceFirstMove = from->getPiece()->isFirstMove();
         if(to->getPiece() != nullptr) {
             capturedPiece = to->getPiece();
-            player->addCapturedPiece(to->getPiece()->getAbbr());
+            //player.lock()->addCapturedPiece(to->getPiece()->getAbbr());
             to->getPiece()->setCaptured();
         }
         //en passant
@@ -84,7 +87,7 @@ void Move::execute(const PlayerPtr &player, BoardPtr &board) {
             enPassant = true;
             SquarePtr squareOfCapturedPawn = board->getSquare(from->getRow(), to->getColumn());
             capturedPiece = squareOfCapturedPawn->getPiece();
-            player->addCapturedPiece(squareOfCapturedPawn->getPiece()->getAbbr());
+            //player.lock()->addCapturedPiece(squareOfCapturedPawn->getPiece()->getAbbr());
             squareOfCapturedPawn->getPiece()->setCaptured();
             squareOfCapturedPawn->setPiece(nullptr);
             pieceFirstMove = false;
@@ -94,15 +97,17 @@ void Move::execute(const PlayerPtr &player, BoardPtr &board) {
         piece->setSquare(to);
         from->setPiece(nullptr);
     }
-    player->addMove(abbr);
+    gameData->addMove(shared_from_this());
     executed = true;
 }
 
-void Move::undo(const PlayerPtr &player, BoardPtr &board) {
+void Move::undo(GameDataPtr &gameData) {
     if(!executed) return;
+    if(player.lock() == nullptr) return;
+    BoardPtr board = gameData->getBoard();
     if(abbr == "O-O") {
         int row;
-        if(player->getColor() == WHITE) row = 7;
+        if(player.lock()->getColor() == WHITE) row = 7;
         else row = 0;
 
         PiecePtr king = board->getSquare(row, 6)->getPiece();
@@ -119,7 +124,7 @@ void Move::undo(const PlayerPtr &player, BoardPtr &board) {
     }
     else if(abbr == "O-O-O") {
         int row;
-        if(player->getColor() == WHITE) row = 7;
+        if(player.lock()->getColor() == WHITE) row = 7;
         else row = 0;
 
         PiecePtr king = board->getSquare(row, 2)->getPiece();
@@ -150,10 +155,13 @@ void Move::undo(const PlayerPtr &player, BoardPtr &board) {
                 capturedPiece->restore(to);
                 to->setPiece(capturedPiece);
             }
-            player->removeLastCapturedPiece();
         }
         else to->setPiece(nullptr);
     }
-    player->removeLastMove();
+    gameData->removeMove(shared_from_this());
     executed = false;
+}
+
+PlayerPtr Move::getPlayer() const {
+    return player.lock();
 }

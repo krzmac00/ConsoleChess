@@ -1,18 +1,13 @@
 #include "View/ConsoleView.h"
 #include "typedefs.h"
-#include "Controllers/ConsoleController.h"
+#include "Controller.h"
 
 
 using namespace std;
 
 int main() {
     ViewPtr consoleView = std::make_shared<ConsoleView>();
-//    Game game(consoleView);
-//    bool play = true;
-//    while(play){
-//        play = game.play();
-//    }
-    ConsoleController controller(consoleView);
+    Controller controller(consoleView);
     bool play = true;
     while(play) {
         play = controller.play();

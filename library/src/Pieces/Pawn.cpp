@@ -1,12 +1,15 @@
 #include "Pieces/Pawn.h"
 #include "Player.h"
+#include "GameData.h"
 #include "Board.h"
+#include "Move.h"
 #include <cmath>
 
 Pawn::Pawn(PlayerPtr player, SquarePtr square) : Piece(PieceType::Pawn, player, square) {}
 
-bool Pawn::canBeMovedToSquare(SquarePtr toSquare, BoardPtr board) {
+bool Pawn::canBeMovedToSquare(SquarePtr toSquare, GameDataPtr gameData) {
     if(toSquare == square) return false;
+    BoardPtr board = gameData->getBoard();
     if(player->getColor() == WHITE) {
         if(toSquare->getPiece() == nullptr) {
             if(square->getColumn() == toSquare->getColumn()) {
@@ -24,9 +27,11 @@ bool Pawn::canBeMovedToSquare(SquarePtr toSquare, BoardPtr board) {
                 PiecePtr piece = board->getSquare(square->getRow(), toSquare->getColumn())->getPiece();
                 if(piece != nullptr && piece->getType() == PieceType::Pawn &&
                    piece->getPlayer()->getColor() != player->getColor()) {
-                    std::string lastMove = piece->getPlayer()->getLastMove();
-                    char toColumn = toSquare->getColumn() + 'A';
-                    if(lastMove[0] == toColumn && lastMove[1] == '7' && lastMove[3] == toColumn && lastMove[4] == '5') {}
+                    MovePtr lastMove = gameData->getLastMove();
+                    if(lastMove->getFrom() == nullptr || lastMove->getTo() == nullptr) return false;
+                    int toColumn = toSquare->getColumn();
+                    if(lastMove->getFrom()->getColumn() == toColumn && lastMove->getFrom()->getRow() == 1 &&
+                        lastMove->getTo()->getColumn() == toColumn && lastMove->getTo()->getRow() == 3) {}
                     else return false;
                 }
                 else return false;
@@ -59,9 +64,11 @@ bool Pawn::canBeMovedToSquare(SquarePtr toSquare, BoardPtr board) {
                 PiecePtr piece = board->getSquare(square->getRow(), toSquare->getColumn())->getPiece();
                 if(piece != nullptr && piece->getType() == PieceType::Pawn &&
                    piece->getPlayer()->getColor() != player->getColor()) {
-                    std::string lastMove = piece->getPlayer()->getLastMove();
-                    char toColumn = toSquare->getColumn() + 'A';
-                    if(lastMove[0] == toColumn && lastMove[1] == '2' && lastMove[3] == toColumn && lastMove[4] == '4') {}
+                    MovePtr lastMove = gameData->getLastMove();
+                    if(lastMove->getFrom() == nullptr || lastMove->getTo() == nullptr) return false;
+                    int toColumn = toSquare->getColumn();
+                    if(lastMove->getFrom()->getColumn() == toColumn && lastMove->getFrom()->getRow() == 6 &&
+                        lastMove->getTo()->getColumn() == toColumn && lastMove->getTo()->getRow() == 4) {}
                     else return false;
                 }
                 else return false;

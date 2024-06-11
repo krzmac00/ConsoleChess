@@ -4,7 +4,7 @@
 #include "Player.h"
 #include "Move.h"
 
-class ComputerPlayer final : public Player, public std::enable_shared_from_this<Player> {
+class ComputerPlayer final : public Player {
 public:
     ComputerPlayer(std::string name, Color color);
     ~ComputerPlayer() override;

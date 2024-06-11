@@ -2,7 +2,6 @@
 #include "GameData.h"
 #include "Players/HumanPlayer.h"
 #include "Players/ComputerPlayer.h"
-#include "Check.h"
 
 GameDataPtr GameLogic::initializeGame(Color player1Color, bool playWithComputer) {
     BoardPtr board = std::make_shared<Board>();
@@ -62,20 +61,20 @@ GameDataPtr GameLogic::initializeGame(Color player1Color, bool playWithComputer)
     white->setKing(board->getSquare(7, 4)->getPiece());
     black->setKing(board->getSquare(0, 4)->getPiece());
 
-    return std::make_shared<GameData>(board,player1,player2,playerTurn);
+    return std::make_shared<GameData>(board, player1, player2, playerTurn);
 }
 
 
-bool GameLogic::isMoveCorrect(const PlayerPtr &player, MovePtr &move, GameDataPtr gameData) {
-    BoardPtr board = gameData->getBoard();
+bool GameLogic::isMoveCorrect(MovePtr &move, GameDataPtr gameData) {
     if(move->getFrom() == move->getTo()) return false;
+    PlayerPtr player = move->getPlayer();
     PiecePtr piece = move->getFrom()->getPiece();
     if(piece != nullptr && piece->getPlayer() == player) { //check if on fromSquare is located a piece that belongs to player that moves
         PiecePtr pieceToBeCaptured = move->getTo()->getPiece();
         //check if piece that shall be captured is not owned by player that moves and if it's not a king
         if(pieceToBeCaptured != nullptr && (pieceToBeCaptured->getPlayer() == player ||
                                             pieceToBeCaptured->getType() == PieceType::King)) return false;
-        if(!piece->canBeMovedToSquare(move->getTo(), board)) return false;
+        if(!piece->canBeMovedToSquare(move->getTo(), gameData)) return false;
         if(GameLogic::isPlayerInCheckAfterMove(player, move, gameData)) return false;
     }
     else return false;
@@ -84,14 +83,13 @@ bool GameLogic::isMoveCorrect(const PlayerPtr &player, MovePtr &move, GameDataPt
 
 
 bool GameLogic::isPlayerInCheckAfterMove(const PlayerPtr &player, MovePtr &move, GameDataPtr gameData) {
-    BoardPtr board = gameData->getBoard();
-    move->execute(player, board);
+    move->execute(gameData);
     if(GameLogic::getCheckingPiece(player, gameData) != nullptr) {
-        move->undo(player, board);
+        move->undo(gameData);
         return true;
     }
     else {
-        move->undo(player, board);
+        move->undo(gameData);
         return false;
     }
 }
@@ -107,7 +105,7 @@ PiecePtr GameLogic::getCheckingPiece(const PlayerPtr &playerInCheck, GameDataPtr
     else attackingPlayer = player1;
     for(auto &piece : board->getPiecesOfPlayer(attackingPlayer)) {
         if(piece != nullptr && !piece->isCaptured()) {
-            if(piece->canBeMovedToSquare(playerInCheck->getKing()->getSquare(), board)) {
+            if(piece->canBeMovedToSquare(playerInCheck->getKing()->getSquare(), gameData)) {
                 return piece;
             }
         }
@@ -175,7 +173,7 @@ bool GameLogic::isSquareAttacked(const PlayerPtr &player, SquarePtr square, Game
     else piecesOfAttackingPlayer = board->getPiecesOfPlayer(player1);
     for(auto &piece : piecesOfAttackingPlayer) {
         if(piece != nullptr && !piece->isCaptured()) {
-            if(piece->canBeMovedToSquare(square, board)) return true;
+            if(piece->canBeMovedToSquare(square, gameData)) return true;
         }
     }
     return false;
@@ -186,7 +184,7 @@ bool GameLogic::isSquareAttacked(const PlayerPtr &player, SquarePtr square, Game
 
 SquarePtr GameLogic::checkIfPromotion(MovePtr move, GameDataPtr gameData) {
     BoardPtr board = gameData->getBoard();
-    PlayerPtr player = gameData->getPlayerTurn();
+    PlayerPtr player = move->getPlayer();
     if(player->getColor() == WHITE) {
         if(move->getTo()->getRow() == 0) {
             int column = move->getTo()->getColumn();
@@ -224,11 +222,11 @@ bool GameLogic::isCheckmate(const PlayerPtr &player, GameDataPtr gameData) {
 
 bool GameLogic::canCheckingPieceBeCaptured(const PlayerPtr &playerInCheck, GameDataPtr gameData) {
     BoardPtr board = gameData->getBoard();
-    SquarePtr squareOfCheckingPiece = playerInCheck->getCheck()->getCheckingPiece()->getSquare();
+    SquarePtr squareOfCheckingPiece = playerInCheck->getCheckingPiece()->getSquare();
     for(auto &piece : board->getPiecesOfPlayer(playerInCheck)) {
         if(piece != nullptr && !piece->isCaptured()) {
-            if(piece->canBeMovedToSquare(squareOfCheckingPiece, board)) {
-                MovePtr move = std::make_shared<Move>(piece->getSquare(), squareOfCheckingPiece);
+            if(piece->canBeMovedToSquare(squareOfCheckingPiece, gameData)) {
+                MovePtr move = std::make_shared<Move>(piece->getSquare(), squareOfCheckingPiece, playerInCheck);
                 if(!GameLogic::isPlayerInCheckAfterMove(playerInCheck, move, gameData)) return true;
             }
         }
@@ -249,8 +247,9 @@ bool GameLogic::canKingBeMoved(const PlayerPtr &player, GameDataPtr gameData) {
 
         if(newRow >= 0 && newRow < 8 && newColumn >= 0 && newColumn < 8) {
             MovePtr move = std::make_shared<Move>(board->getSquare(kingRow, kingColumn),
-                                                  board->getSquare(newRow, newColumn));
-            if(GameLogic::isMoveCorrect(player, move, gameData)) return true;
+                                                  board->getSquare(newRow, newColumn),
+                                                  player);
+            if(GameLogic::isMoveCorrect(move, gameData)) return true;
         }
     }
     return false;
@@ -261,7 +260,7 @@ bool GameLogic::canCheckBeBlocked(const PlayerPtr &playerInCheck, GameDataPtr ga
 
     int kingRow = playerInCheck->getKing()->getSquare()->getRow();
     int kingColumn = playerInCheck->getKing()->getSquare()->getColumn();
-    PiecePtr checkingPiece = playerInCheck->getCheck()->getCheckingPiece();
+    PiecePtr checkingPiece = playerInCheck->getCheckingPiece();
     int checkingPieceRow = checkingPiece->getSquare()->getRow();
     int checkingPieceColumn = checkingPiece->getSquare()->getColumn();
     std::vector<PiecePtr> playerPieces = board->getPiecesOfPlayer(playerInCheck);
@@ -274,9 +273,10 @@ bool GameLogic::canCheckBeBlocked(const PlayerPtr &playerInCheck, GameDataPtr ga
             for(int i = 0; i < std::abs(kingColumn - checkingPieceColumn) - 1; i++) {
                 column++;
                 for(auto &piece : playerPieces) {
-                    if(piece->canBeMovedToSquare(board->getSquare(checkingPieceRow, column), board)) {
+                    if(piece->canBeMovedToSquare(board->getSquare(checkingPieceRow, column), gameData)) {
                         MovePtr move = std::make_shared<Move>(piece->getSquare(),
-                                                              board->getSquare(checkingPieceRow, column));
+                                                              board->getSquare(checkingPieceRow, column),
+                                                              playerInCheck);
                         if(!GameLogic::isPlayerInCheckAfterMove(playerInCheck, move, gameData)) return true;
                     }
                 }
@@ -289,9 +289,10 @@ bool GameLogic::canCheckBeBlocked(const PlayerPtr &playerInCheck, GameDataPtr ga
             for(int i = 0; i < std::abs(kingRow - checkingPieceRow) - 1; i++) {
                 row++;
                 for(auto &piece : playerPieces) {
-                    if(piece->canBeMovedToSquare(board->getSquare(row, checkingPieceColumn), board)) {
+                    if(piece->canBeMovedToSquare(board->getSquare(row, checkingPieceColumn), gameData)) {
                         MovePtr move = std::make_shared<Move>(piece->getSquare(),
-                                                              board->getSquare(row, checkingPieceColumn));
+                                                              board->getSquare(row, checkingPieceColumn),
+                                                              playerInCheck);
                         if(!GameLogic::isPlayerInCheckAfterMove(playerInCheck, move, gameData)) return true;
                     }
                 }
@@ -306,8 +307,10 @@ bool GameLogic::canCheckBeBlocked(const PlayerPtr &playerInCheck, GameDataPtr ga
                 row--;
                 column++;
                 for(auto &piece : playerPieces) {
-                    if(piece->canBeMovedToSquare(board->getSquare(row, column), board)) {
-                        MovePtr move = std::make_shared<Move>(piece->getSquare(), board->getSquare(row, column));
+                    if(piece->canBeMovedToSquare(board->getSquare(row, column), gameData)) {
+                        MovePtr move = std::make_shared<Move>(piece->getSquare(),
+                                                              board->getSquare(row, column),
+                                                              playerInCheck);
                         if(!GameLogic::isPlayerInCheckAfterMove(playerInCheck, move, gameData)) return true;
                     }
                 }
@@ -318,8 +321,10 @@ bool GameLogic::canCheckBeBlocked(const PlayerPtr &playerInCheck, GameDataPtr ga
                 row++;
                 column--;
                 for(auto &piece : playerPieces) {
-                    if(piece->canBeMovedToSquare(board->getSquare(row, column), board)) {
-                        MovePtr move = std::make_shared<Move>(piece->getSquare(), board->getSquare(row, column));
+                    if(piece->canBeMovedToSquare(board->getSquare(row, column), gameData)) {
+                        MovePtr move = std::make_shared<Move>(piece->getSquare(),
+                                                              board->getSquare(row, column),
+                                                              playerInCheck);
                         if(!GameLogic::isPlayerInCheckAfterMove(playerInCheck, move, gameData)) return true;
                     }
                 }
@@ -330,8 +335,10 @@ bool GameLogic::canCheckBeBlocked(const PlayerPtr &playerInCheck, GameDataPtr ga
                 row++;
                 column++;
                 for(auto &piece : playerPieces) {
-                    if(piece->canBeMovedToSquare(board->getSquare(row, column), board)) {
-                        MovePtr move = std::make_shared<Move>(piece->getSquare(), board->getSquare(row, column));
+                    if(piece->canBeMovedToSquare(board->getSquare(row, column), gameData)) {
+                        MovePtr move = std::make_shared<Move>(piece->getSquare(),
+                                                              board->getSquare(row, column),
+                                                              playerInCheck);
                         if(!GameLogic::isPlayerInCheckAfterMove(playerInCheck, move, gameData)) return true;
                     }
                 }
@@ -342,8 +349,10 @@ bool GameLogic::canCheckBeBlocked(const PlayerPtr &playerInCheck, GameDataPtr ga
                 row--;
                 column--;
                 for(auto &piece : playerPieces) {
-                    if(piece->canBeMovedToSquare(board->getSquare(row, column), board)) {
-                        MovePtr move = std::make_shared<Move>(piece->getSquare(), board->getSquare(row, column));
+                    if(piece->canBeMovedToSquare(board->getSquare(row, column), gameData)) {
+                        MovePtr move = std::make_shared<Move>(piece->getSquare(),
+                                                              board->getSquare(row, column),
+                                                              playerInCheck);
                         if(!GameLogic::isPlayerInCheckAfterMove(playerInCheck, move, gameData)) return true;
                     }
                 }
@@ -358,9 +367,10 @@ bool GameLogic::canCheckBeBlocked(const PlayerPtr &playerInCheck, GameDataPtr ga
             for(int i = 0; i < std::abs(kingColumn - checkingPieceColumn) - 1; i++) {
                 column++;
                 for(auto &piece : playerPieces) {
-                    if(piece->canBeMovedToSquare(board->getSquare(checkingPieceRow, column), board)) {
+                    if(piece->canBeMovedToSquare(board->getSquare(checkingPieceRow, column), gameData)) {
                         MovePtr move = std::make_shared<Move>(piece->getSquare(),
-                                                              board->getSquare(checkingPieceRow, column));
+                                                              board->getSquare(checkingPieceRow, column),
+                                                              playerInCheck);
                         if(!GameLogic::isPlayerInCheckAfterMove(playerInCheck, move, gameData)) return true;
                     }
                 }
@@ -373,9 +383,10 @@ bool GameLogic::canCheckBeBlocked(const PlayerPtr &playerInCheck, GameDataPtr ga
             for(int i = 0; i < std::abs(kingRow - checkingPieceRow) - 1; i++) {
                 row++;
                 for(auto &piece : playerPieces) {
-                    if(piece->canBeMovedToSquare(board->getSquare(row, checkingPieceColumn), board)) {
+                    if(piece->canBeMovedToSquare(board->getSquare(row, checkingPieceColumn), gameData)) {
                         MovePtr move = std::make_shared<Move>(piece->getSquare(),
-                                                              board->getSquare(row, checkingPieceColumn));
+                                                              board->getSquare(row, checkingPieceColumn),
+                                                              playerInCheck);
                         if(!GameLogic::isPlayerInCheckAfterMove(playerInCheck, move, gameData)) return true;
                     }
                 }
@@ -388,8 +399,10 @@ bool GameLogic::canCheckBeBlocked(const PlayerPtr &playerInCheck, GameDataPtr ga
                 row--;
                 column++;
                 for(auto &piece : playerPieces) {
-                    if(piece->canBeMovedToSquare(board->getSquare(row, column), board)) {
-                        MovePtr move = std::make_shared<Move>(piece->getSquare(), board->getSquare(row, column));
+                    if(piece->canBeMovedToSquare(board->getSquare(row, column), gameData)) {
+                        MovePtr move = std::make_shared<Move>(piece->getSquare(),
+                                                              board->getSquare(row, column),
+                                                              playerInCheck);
                         if(!GameLogic::isPlayerInCheckAfterMove(playerInCheck, move, gameData)) return true;
                     }
                 }
@@ -402,8 +415,10 @@ bool GameLogic::canCheckBeBlocked(const PlayerPtr &playerInCheck, GameDataPtr ga
                 row++;
                 column--;
                 for(auto &piece : playerPieces) {
-                    if(piece->canBeMovedToSquare(board->getSquare(row, column), board)) {
-                        MovePtr move = std::make_shared<Move>(piece->getSquare(), board->getSquare(row, column));
+                    if(piece->canBeMovedToSquare(board->getSquare(row, column), gameData)) {
+                        MovePtr move = std::make_shared<Move>(piece->getSquare(),
+                                                              board->getSquare(row, column),
+                                                              playerInCheck);
                         if(!GameLogic::isPlayerInCheckAfterMove(playerInCheck, move, gameData)) return true;
                     }
                 }
@@ -416,8 +431,10 @@ bool GameLogic::canCheckBeBlocked(const PlayerPtr &playerInCheck, GameDataPtr ga
                 row++;
                 column++;
                 for(auto &piece : playerPieces) {
-                    if(piece->canBeMovedToSquare(board->getSquare(row, column), board)) {
-                        MovePtr move = std::make_shared<Move>(piece->getSquare(), board->getSquare(row, column));
+                    if(piece->canBeMovedToSquare(board->getSquare(row, column), gameData)) {
+                        MovePtr move = std::make_shared<Move>(piece->getSquare(),
+                                                              board->getSquare(row, column),
+                                                              playerInCheck);
                         if(!GameLogic::isPlayerInCheckAfterMove(playerInCheck, move, gameData)) return true;
                     }
                 }
@@ -430,8 +447,10 @@ bool GameLogic::canCheckBeBlocked(const PlayerPtr &playerInCheck, GameDataPtr ga
                 row--;
                 column--;
                 for(auto &piece : playerPieces) {
-                    if(piece->canBeMovedToSquare(board->getSquare(row, column), board)) {
-                        MovePtr move = std::make_shared<Move>(piece->getSquare(), board->getSquare(row, column));
+                    if(piece->canBeMovedToSquare(board->getSquare(row, column), gameData)) {
+                        MovePtr move = std::make_shared<Move>(piece->getSquare(),
+                                                              board->getSquare(row, column),
+                                                              playerInCheck);
                         if(!GameLogic::isPlayerInCheckAfterMove(playerInCheck, move, gameData)) return true;
                     }
                 }
@@ -451,8 +470,10 @@ bool GameLogic::isStalemate(const PlayerPtr &player, GameDataPtr gameData) {
         if(piece != nullptr && !piece->isCaptured()){
             for(int x = 0; x < 8; x++) {
                 for (int y = 0; y < 8; y++) {
-                    MovePtr move = std::make_shared<Move>(pieceSquare, board->getSquare(x, y));
-                    if (GameLogic::isMoveCorrect(player, move, gameData)) return false;
+                    MovePtr move = std::make_shared<Move>(pieceSquare,
+                                                          board->getSquare(x, y),
+                                                          player);
+                    if(GameLogic::isMoveCorrect(move, gameData)) return false;
                 }
             }
         }

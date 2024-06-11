@@ -47,7 +47,7 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteKomputer, TestSuiteComputerPlayerFixture)
         BOOST_TEST(areMovesDifferent == true);
     }
 
-    BOOST_AUTO_TEST_CASE(wykonajmoveBialeBazowyTest) {
+    BOOST_AUTO_TEST_CASE(executeMoveWhitePositiveTest) {
         for(int i = 0; i < 8; i++)
             for(int j = 0; j < 8; j++)
                 board->addSquare(i, j);

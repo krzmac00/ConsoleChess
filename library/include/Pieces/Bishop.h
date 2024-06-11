@@ -7,7 +7,7 @@ class Bishop : public Piece {
 public:
     Bishop(PlayerPtr player, SquarePtr square);
     ~Bishop() override;
-    bool canBeMovedToSquare(SquarePtr toSquare, BoardPtr board) override;
+    bool canBeMovedToSquare(SquarePtr toSquare, GameDataPtr gameData) override;
 };
 
 #endif //CHESS_BISHOP_H

@@ -17,16 +17,21 @@ SquarePtr Board::getSquare(int row, int column) {
     return chessboard[row][column];
 }
 
-void Board::addPiece(PieceType piece, PlayerPtr player, int row, int column) {
-    PiecePtr fig = PiecesCreator::create(piece, player, chessboard[row][column]);
-    chessboard[row][column]->setPiece(fig);
-    pieces.emplace_back(fig);
+void Board::addPiece(PieceType pieceType, PlayerPtr player, int row, int column) {
+    PiecePtr piece = PiecesCreator::create(pieceType, player, chessboard[row][column]);
+    chessboard[row][column]->setPiece(piece);
+    pieces.emplace_back(piece);
+}
+
+void Board::addCapturedPiece(PieceType pieceType, PlayerPtr player) {
+    PiecePtr piece = PiecesCreator::create(pieceType, player, nullptr);
+    piece->setCaptured();
+    pieces.emplace_back(piece);
 }
 
 void Board::deletePiece(PiecePtr piece) {
     //piece->getSquare()->setPiece(nullptr);
     pieces.erase(std::remove(pieces.begin(), pieces.end(), piece), pieces.end());
-
 }
 
 std::vector<PiecePtr> Board::getPieces() const {
@@ -39,6 +44,14 @@ std::vector<PiecePtr> Board::getPiecesOfPlayer(PlayerPtr player) const {
         if(piece->getPlayer() == player && !piece->isCaptured()) playerPieces.push_back(piece);
     }
     return playerPieces;
+}
+
+std::vector<PiecePtr> Board::getPiecesCapturedByPlayer(PlayerPtr player) const {
+    std::vector<PiecePtr> capturedPieces;
+    for(auto &piece : pieces) {
+        if(piece->getPlayer() != player && piece->isCaptured()) capturedPieces.push_back(piece);
+    }
+    return capturedPieces;
 }
 
 std::string Board::toString() const {

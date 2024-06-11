@@ -7,7 +7,7 @@ class King : public Piece {
 public:
     King(PlayerPtr player, SquarePtr square);
     ~King() override;
-    bool canBeMovedToSquare(SquarePtr toSquare, BoardPtr board) override;
+    bool canBeMovedToSquare(SquarePtr toSquare, GameDataPtr gameData) override;
 };
 
 #endif //CHESS_KING_H

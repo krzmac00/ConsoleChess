@@ -1,13 +1,13 @@
-#include "Controllers/ConsoleController.h"
+#include "Controller.h"
 #include "Exceptions/FileException.h"
 #include "GameLogic.h"
 #include "GameReader.h"
 #include "GameWriter.h"
 #include "Move.h"
 
-ConsoleController::ConsoleController(ViewPtr view) : IController(view) {}
+Controller::Controller(ViewPtr view) : view(view), gameData(nullptr) {}
 
-bool ConsoleController::play() {
+bool Controller::play() {
 
     if(view->readIfNewGame()) {
         bool playWithComputer = view->readIfPlayWithComputer();
@@ -47,7 +47,7 @@ bool ConsoleController::play() {
         playerTurn->cancelCheck();
         //check if other player is in check
         PiecePtr checkingPiece = GameLogic::getCheckingPiece(otherPlayer, gameData);
-        if(checkingPiece != nullptr) otherPlayer->setCheck(checkingPiece);
+        if(checkingPiece != nullptr) otherPlayer->setCheckingPiece(checkingPiece);
 
         if(GameLogic::isCheckmate(otherPlayer, gameData)) {
             view->displayDefView(gameData);
@@ -68,7 +68,7 @@ bool ConsoleController::play() {
     }
 }
 
-Event ConsoleController::handleMove() {
+Event Controller::handleMove() {
     BoardPtr board = gameData->getBoard();
     const PlayerPtr& player = gameData->getPlayerTurn();
     MovePtr move;
@@ -79,7 +79,7 @@ Event ConsoleController::handleMove() {
             while(true) {
                 view->displayMenu();
                 std::string option = view->readUserChoiceOfMenuOption();
-                if (option == "D") view->displayPlayerMoves(player);
+                if (option == "D") view->displayPlayerMoves(player, gameData);
                 else if(option == "S") {
                     try {
                         GameWriter::saveGame(gameData, view->readFilePath());
@@ -95,9 +95,9 @@ Event ConsoleController::handleMove() {
         else {
             if(move->getAbbr() == "O-O" || move->getAbbr() == "O-O-O")
                 isCorrect = GameLogic::isCastlingCorrect(player, move->getAbbr(), gameData);
-            else isCorrect = GameLogic::isMoveCorrect(player, move, gameData);
+            else isCorrect = GameLogic::isMoveCorrect(move, gameData);
 
-            if(isCorrect) move->execute(player, board);
+            if(isCorrect) move->execute(gameData);
             else view->setError(true);
         }
     } while(!isCorrect);

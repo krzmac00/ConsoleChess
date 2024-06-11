@@ -1,11 +1,13 @@
 #include "Pieces/Rook.h"
 #include "Board.h"
+#include "GameData.h"
 #include <cmath>
 
 Rook::Rook(PlayerPtr player, SquarePtr square) : Piece(PieceType::Rook, player, square) {}
 
-bool Rook::canBeMovedToSquare(SquarePtr toSquare, BoardPtr board) {
+bool Rook::canBeMovedToSquare(SquarePtr toSquare, GameDataPtr gameData) {
     if(toSquare == square) return false;
+    BoardPtr board = gameData->getBoard();
     if(square->getRow() == toSquare->getRow()) {
         int row = square->getRow();
         int column;

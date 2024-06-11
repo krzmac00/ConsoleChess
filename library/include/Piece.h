@@ -25,7 +25,7 @@ public:
     virtual void restore(SquarePtr);
     virtual bool isFirstMove() const;
     virtual void setFirstMove(bool isFirst);
-    virtual bool canBeMovedToSquare(SquarePtr, BoardPtr) = 0;
+    virtual bool canBeMovedToSquare(SquarePtr, GameDataPtr) = 0;
 };
 
 #endif //CHESS_PIECE_H

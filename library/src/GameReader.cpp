@@ -1,6 +1,7 @@
 #include "GameReader.h"
 #include "GameData.h"
 #include "Board.h"
+#include "Move.h"
 #include "Players/HumanPlayer.h"
 #include "Players/ComputerPlayer.h"
 #include <fstream>
@@ -75,29 +76,41 @@ GameDataPtr GameReader::loadGame(std::string filePath) noexcept(false) {
     if(secondPlayer == "ComputerPlayer") player2 = std::make_shared<ComputerPlayer>(secondPlayer, colorOfPlayer2);
     else player2 = std::make_shared<HumanPlayer>(secondPlayer, colorOfPlayer2);
 
-    //moves of player1
+    //read history of moves
     getline(file, line);
-    std::istringstream moves1(line);
-    while(moves1.peek() != decltype(moves1)::traits_type::eof()){
-        std::string buf;
-        moves1 >> buf;
-        player1->addMove(buf);
-    }
-    //moves of player2
-    getline(file, line);
-    std::istringstream moves2(line);
-    while(moves2.peek() != decltype(moves2)::traits_type::eof()){
-        std::string buf;
-        moves2 >> buf;
-        player2->addMove(buf);
-    }
+    std::istringstream moves(line);
+
     //pieces captured by player1
     getline(file, line);
     std::istringstream capturedPieces1(line);
     while(capturedPieces1.peek() != decltype(capturedPieces1)::traits_type::eof()){
         std::string buf;
         capturedPieces1 >> buf;
-        player1->addCapturedPiece(buf);
+        PieceType pieceType;
+        switch(buf[1]){
+            case 'P':
+                pieceType = PieceType::Pawn;
+                break;
+            case 'R':
+                pieceType = PieceType::Rook;
+                break;
+            case 'N':
+                pieceType = PieceType::Knight;
+                break;
+            case 'B':
+                pieceType = PieceType::Bishop;
+                break;
+            case 'Q':
+                pieceType = PieceType::Queen;
+                break;
+            case 'K':
+                pieceType = PieceType::King;
+                break;
+            default:
+                file.close();
+                throw FileStructureException(filePath, "invalid piece name: " + std::to_string(buf[1]));
+        }
+        board->addCapturedPiece(pieceType, player2);
     }
     //pieces captured by player2
     getline(file, line);
@@ -105,7 +118,31 @@ GameDataPtr GameReader::loadGame(std::string filePath) noexcept(false) {
     while(capturedPieces2.peek() != decltype(capturedPieces2)::traits_type::eof()){
         std::string buf;
         capturedPieces2 >> buf;
-        player2->addCapturedPiece(buf);
+        PieceType pieceType;
+        switch(buf[1]){
+            case 'P':
+                pieceType = PieceType::Pawn;
+                break;
+            case 'R':
+                pieceType = PieceType::Rook;
+                break;
+            case 'N':
+                pieceType = PieceType::Knight;
+                break;
+            case 'B':
+                pieceType = PieceType::Bishop;
+                break;
+            case 'Q':
+                pieceType = PieceType::Queen;
+                break;
+            case 'K':
+                pieceType = PieceType::King;
+                break;
+            default:
+                file.close();
+                throw FileStructureException(filePath, "invalid piece name: " + std::to_string(buf[1]));
+        }
+        board->addCapturedPiece(pieceType, player1);
     }
 
     file.close();
@@ -153,7 +190,7 @@ GameDataPtr GameReader::loadGame(std::string filePath) noexcept(false) {
                         owner->setKing(board->getSquare(i, j)->getPiece());
                         break;
                     default:
-                        break;
+                        throw FileStructureException(filePath, "invalid piece name: " + std::to_string(table[i][j][1]));
                 }
                 if(table[i][j][2] == '0')
                     board->getSquare(i, j)->getPiece()->setFirstMove(false);
@@ -169,12 +206,45 @@ GameDataPtr GameReader::loadGame(std::string filePath) noexcept(false) {
     if(squareOfCheckingPiece1.length() > 0) {
         int row = 8 - (squareOfCheckingPiece1[1] - '0');
         char column = squareOfCheckingPiece1[0] - 'A';
-        player1->setCheck(board->getSquare(row, column)->getPiece());
+        try {
+            player1->setCheckingPiece(board->getSquare(row, column)->getPiece());
+        }
+        catch(...) {
+            throw FileStructureException(filePath, "invalid checking piece square format for player1");
+        }
     }
     else if(squareOfCheckingPiece2.length() > 0) {
         int row = 8 - (squareOfCheckingPiece2[1] - '0');
         char column = squareOfCheckingPiece2[0] - 'A';
-        player2->setCheck(board->getSquare(row, column)->getPiece());
+        try {
+            player2->setCheckingPiece(board->getSquare(row, column)->getPiece());
+        }
+        catch(...) {
+            throw FileStructureException(filePath, "invalid checking piece square format for player2");
+        }
     }
-    return std::make_shared<GameData>(board, player1, player2, playerTurn);
+
+    GameDataPtr gameData = std::make_shared<GameData>(board, player1, player2, playerTurn);
+
+    //recreate moves objects
+    PlayerPtr playerThatMoves = player1->getColor() == WHITE ? player1 : player2;
+    while(moves.peek() != decltype(moves)::traits_type::eof()){
+        std::string buf;
+        moves >> buf;
+        MovePtr move;
+        if(buf == "O-O" || buf == "O-O-O") move = std::make_shared<Move>(buf, playerThatMoves);
+        else {
+            if(buf.length() != 5) {
+                throw FileStructureException(filePath, "invalid move format: " + buf);
+            }
+            if(buf[0] < 'A' || buf[0] > 'H' || buf[1] < '1' || buf[1] > '8' || buf[3] < 'A' || buf[3] > 'H' || buf[4] < '1' || buf[4] > '8')
+                throw FileStructureException(filePath, "invalid move format: " + buf);
+            move = std::make_shared<Move>(buf, board, playerThatMoves);
+        }
+        gameData->addMove(move);
+        if(playerThatMoves == player1) playerThatMoves = player2;
+        else playerThatMoves = player1;
+    }
+
+    return gameData;
 }

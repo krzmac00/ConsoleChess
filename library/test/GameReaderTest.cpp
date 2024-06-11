@@ -5,11 +5,11 @@
 #include "Player.h"
 #include "Board.h"
 #include "Piece.h"
+#include "Move.h"
 #include <vector>
 
 
 typedef std::vector<std::string> stringVector;
-
 BOOST_TEST_DONT_PRINT_LOG_VALUE(stringVector)
 
 BOOST_AUTO_TEST_SUITE(TestSuiteGameReader)
@@ -64,24 +64,47 @@ BOOST_AUTO_TEST_SUITE(TestSuiteGameReader)
         BOOST_REQUIRE_EQUAL(board->getSquare(7,4)->getPiece()->getType(), PieceType::King);
         BOOST_REQUIRE_EQUAL(board->getSquare(7,4)->getPiece()->getPlayer(), player1);
         BOOST_REQUIRE_EQUAL(board->getSquare(7,4)->getPiece()->isFirstMove(), true);
+        //movesHistory: E7-H4 E4-H4 G1-F3 H4-B4
+        std::vector<std::string> movesToString;
+        movesToString.emplace_back("E7-H4");
+        movesToString.emplace_back("E4-H4");
+        movesToString.emplace_back("G1-F3");
+        movesToString.emplace_back("H4-B4");
+        auto movesHistory = gameData->getMovesHistory();
+        BOOST_REQUIRE_EQUAL(movesHistory.size(), 4);
+        for(int i = 0; i != static_cast<int>(movesHistory.size()); i++) {
+            BOOST_REQUIRE_EQUAL(movesHistory[i]->getAbbr(), movesToString[i]);
+        }
         //Player1 moves
-        std::vector<std::string> player1Moves;
-        player1Moves.emplace_back("E7-H4");
-        player1Moves.emplace_back("G1-F3");
-        BOOST_REQUIRE_EQUAL(player1->getMoves(), player1Moves);
+        std::vector<std::string> player1MovesToString;
+        player1MovesToString.emplace_back("E7-H4");
+        player1MovesToString.emplace_back("G1-F3");
+        auto player1Moves = gameData->getMovesOfPlayer(player1);
+        for(int i = 0; i != static_cast<int>(player1Moves.size()); i++) {
+            BOOST_REQUIRE_EQUAL(player1Moves[i]->getAbbr(), player1MovesToString[i]);
+        }
         //Player2 moves
-        std::vector<std::string> player2Moves;
-        player2Moves.emplace_back("E4-H4");
-        player2Moves.emplace_back("H4-B4");
-        BOOST_REQUIRE_EQUAL(player2->getMoves(), player2Moves);
+        std::vector<std::string> player2MovesToString;
+        player2MovesToString.emplace_back("E4-H4");
+        player2MovesToString.emplace_back("H4-B4");
+        auto player2Moves = gameData->getMovesOfPlayer(player2);
+        for(int i = 0; i != static_cast<int>(player2Moves.size()); i++) {
+            BOOST_REQUIRE_EQUAL(player2Moves[i]->getAbbr(), player2MovesToString[i]);
+        }
         //Player1 captured pieces
-        std::vector<std::string> player1CapturedPieces;
-        player1CapturedPieces.emplace_back("BN");
-        BOOST_REQUIRE_EQUAL(player1->getCapturedPieces(), player1CapturedPieces);
+        std::vector<std::string> player1CapturedPiecesToString;
+        player1CapturedPiecesToString.emplace_back("BN");
+        auto player1CapturedPieces = gameData->getBoard()->getPiecesCapturedByPlayer(player1);
+        for(int i = 0; i != static_cast<int>(player1CapturedPieces.size()); i++) {
+            BOOST_REQUIRE_EQUAL(player1CapturedPieces[i]->getAbbr(), player1CapturedPiecesToString[i]);
+        }
         //Player2 captured pieces
-        std::vector<std::string> player2CapturedPieces;
-        player2CapturedPieces.emplace_back("WB");
-        BOOST_REQUIRE_EQUAL(player2->getCapturedPieces(), player2CapturedPieces);
+        std::vector<std::string> player2CapturedPiecesToString;
+        player2CapturedPiecesToString.emplace_back("WB");
+        auto player2CapturedPieces = gameData->getBoard()->getPiecesCapturedByPlayer(player2);
+        for(int i = 0; i != static_cast<int>(player2CapturedPieces.size()); i++) {
+            BOOST_REQUIRE_EQUAL(player2CapturedPieces[i]->getAbbr(), player2CapturedPiecesToString[i]);
+        }
     }
 
 BOOST_AUTO_TEST_CASE(loadGameTestCaseEmptyFile) {
@@ -108,6 +131,16 @@ BOOST_AUTO_TEST_CASE(loadGameTestCaseEmptyFile) {
     BOOST_AUTO_TEST_CASE(loadGameTestCaseMissingSquare) {
         GameDataPtr gameData;
         BOOST_REQUIRE_THROW(gameData = GameReader::loadGame("../../library/test/gameSaveFiles/corruptedFiles/missingSquare.txt"), FileStructureException);
+    }
+
+    BOOST_AUTO_TEST_CASE(loadGameTestCaseInvalidPieceName) {
+        GameDataPtr gameData;
+        BOOST_REQUIRE_THROW(gameData = GameReader::loadGame("../../library/test/gameSaveFiles/corruptedFiles/invalidPieceName.txt"), FileStructureException);
+    }
+
+    BOOST_AUTO_TEST_CASE(loadGameTestCaseInvalidMoveFormat) {
+        GameDataPtr gameData;
+        BOOST_REQUIRE_THROW(gameData = GameReader::loadGame("../../library/test/gameSaveFiles/corruptedFiles/invalidMoveFormat.txt"), FileStructureException);
     }
 
 BOOST_AUTO_TEST_SUITE_END()

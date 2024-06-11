@@ -1,11 +1,13 @@
 #include <boost/test/unit_test.hpp>
 #include "typedefs.h"
+#include "GameData.h"
 #include "Pieces/Queen.h"
 #include "Board.h"
 #include "Players/HumanPlayer.h"
 #include "Square.h"
 
 struct TestSuiteQueenFixture {
+    GameDataPtr gameData;
     BoardPtr board;
     PlayerPtr whitePlayer;
     PlayerPtr blackPlayer;
@@ -16,6 +18,8 @@ struct TestSuiteQueenFixture {
         board = std::make_shared<Board>();
         whitePlayer = std::make_shared<HumanPlayer>("Player", WHITE);
         blackPlayer = std::make_shared<HumanPlayer>("Player", BLACK);
+        gameData = std::make_shared<GameData>(std::make_shared<Board>(), whitePlayer, blackPlayer, whitePlayer);
+        board = gameData->getBoard();
         square0 = std::make_shared<Square>(5, 0);
         square1 = std::make_shared<Square>(2, 0);
     }
@@ -37,7 +41,7 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteHetman, TestSuiteQueenFixture)
             for (int j = 0; j < 8; j++)
                 board->addSquare(i, j);
         board->addPiece(PieceType::Queen, whitePlayer, 4, 3);
-        bool isCorrect = board->getSquare(4, 3)->getPiece()->canBeMovedToSquare(board->getSquare(1, 0), board);
+        bool isCorrect = board->getSquare(4, 3)->getPiece()->canBeMovedToSquare(board->getSquare(1, 0), gameData);
         BOOST_REQUIRE_EQUAL(isCorrect, true);
     }
 
@@ -46,7 +50,7 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteHetman, TestSuiteQueenFixture)
             for (int j = 0; j < 8; j++)
                 board->addSquare(i, j);
         board->addPiece(PieceType::Queen, whitePlayer, 4, 3);
-        bool isCorrect = board->getSquare(4, 3)->getPiece()->canBeMovedToSquare(board->getSquare(3, 4), board);
+        bool isCorrect = board->getSquare(4, 3)->getPiece()->canBeMovedToSquare(board->getSquare(3, 4), gameData);
         BOOST_REQUIRE_EQUAL(isCorrect, true);
     }
 
@@ -55,7 +59,7 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteHetman, TestSuiteQueenFixture)
             for (int j = 0; j < 8; j++)
                 board->addSquare(i, j);
         board->addPiece(PieceType::Queen, whitePlayer, 4, 3);
-        bool isCorrect = board->getSquare(4, 3)->getPiece()->canBeMovedToSquare(board->getSquare(6, 5), board);
+        bool isCorrect = board->getSquare(4, 3)->getPiece()->canBeMovedToSquare(board->getSquare(6, 5), gameData);
         BOOST_REQUIRE_EQUAL(isCorrect, true);
     }
 
@@ -64,7 +68,7 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteHetman, TestSuiteQueenFixture)
             for (int j = 0; j < 8; j++)
                 board->addSquare(i, j);
         board->addPiece(PieceType::Queen, whitePlayer, 4, 3);
-        bool isCorrect = board->getSquare(4, 3)->getPiece()->canBeMovedToSquare(board->getSquare(7, 0), board);
+        bool isCorrect = board->getSquare(4, 3)->getPiece()->canBeMovedToSquare(board->getSquare(7, 0), gameData);
         BOOST_REQUIRE_EQUAL(isCorrect, true);
     }
 
@@ -75,8 +79,8 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteHetman, TestSuiteQueenFixture)
         board->addPiece(PieceType::Pawn, whitePlayer, 2, 5);
         board->addPiece(PieceType::Pawn, whitePlayer, 1, 3);
         board->addPiece(PieceType::Queen, whitePlayer, 4, 3);
-        bool move1 = board->getSquare(4, 3)->getPiece()->canBeMovedToSquare(board->getSquare(1, 6), board);
-        bool move2 = board->getSquare(4, 3)->getPiece()->canBeMovedToSquare(board->getSquare(0, 3), board);
+        bool move1 = board->getSquare(4, 3)->getPiece()->canBeMovedToSquare(board->getSquare(1, 6), gameData);
+        bool move2 = board->getSquare(4, 3)->getPiece()->canBeMovedToSquare(board->getSquare(0, 3), gameData);
         BOOST_REQUIRE_EQUAL(move1, false);
         BOOST_REQUIRE_EQUAL(move2, false);
     }
@@ -87,8 +91,8 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteHetman, TestSuiteQueenFixture)
                 board->addSquare(i, j);
         board->addPiece(PieceType::Queen, whitePlayer, 4, 0);
         board->addPiece(PieceType::Queen, whitePlayer, 3, 7);
-        bool moveRight = board->getSquare(4, 0)->getPiece()->canBeMovedToSquare(board->getSquare(4, 7), board);
-        bool moveLeft = board->getSquare(3, 7)->getPiece()->canBeMovedToSquare(board->getSquare(3, 0), board);
+        bool moveRight = board->getSquare(4, 0)->getPiece()->canBeMovedToSquare(board->getSquare(4, 7), gameData);
+        bool moveLeft = board->getSquare(3, 7)->getPiece()->canBeMovedToSquare(board->getSquare(3, 0), gameData);
         BOOST_REQUIRE_EQUAL(moveRight, true);
         BOOST_REQUIRE_EQUAL(moveLeft, true);
     }
@@ -99,8 +103,8 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteHetman, TestSuiteQueenFixture)
                 board->addSquare(i, j);
         board->addPiece(PieceType::Queen, whitePlayer, 2, 1);
         board->addPiece(PieceType::Queen, whitePlayer, 7, 0);
-        bool moveDownwards = board->getSquare(2, 1)->getPiece()->canBeMovedToSquare(board->getSquare(7, 1), board);
-        bool moveUpwards = board->getSquare(7, 0)->getPiece()->canBeMovedToSquare(board->getSquare(0, 0), board);
+        bool moveDownwards = board->getSquare(2, 1)->getPiece()->canBeMovedToSquare(board->getSquare(7, 1), gameData);
+        bool moveUpwards = board->getSquare(7, 0)->getPiece()->canBeMovedToSquare(board->getSquare(0, 0), gameData);
         BOOST_REQUIRE_EQUAL(moveDownwards, true);
         BOOST_REQUIRE_EQUAL(moveUpwards, true);
     }
@@ -110,8 +114,8 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteHetman, TestSuiteQueenFixture)
             for (int j = 0; j < 8; j++)
                 board->addSquare(i, j);
         board->addPiece(PieceType::Queen, whitePlayer, 0, 2);
-        bool move1 = board->getSquare(0, 2)->getPiece()->canBeMovedToSquare(board->getSquare(4, 3), board);
-        bool move2 = board->getSquare(0, 2)->getPiece()->canBeMovedToSquare(board->getSquare(1, 4), board);
+        bool move1 = board->getSquare(0, 2)->getPiece()->canBeMovedToSquare(board->getSquare(4, 3), gameData);
+        bool move2 = board->getSquare(0, 2)->getPiece()->canBeMovedToSquare(board->getSquare(1, 4), gameData);
         BOOST_REQUIRE_EQUAL(move1, false);
         BOOST_REQUIRE_EQUAL(move2, false);
     }
@@ -122,7 +126,7 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteHetman, TestSuiteQueenFixture)
                 board->addSquare(i, j);
         board->addPiece(PieceType::Queen, whitePlayer, 2, 1);
         board->addPiece(PieceType::Queen, blackPlayer, 2, 3);
-        bool isCorrect = board->getSquare(2, 1)->getPiece()->canBeMovedToSquare(board->getSquare(2, 5), board);
+        bool isCorrect = board->getSquare(2, 1)->getPiece()->canBeMovedToSquare(board->getSquare(2, 5), gameData);
         BOOST_REQUIRE_EQUAL(isCorrect, false);
     }
 
@@ -132,7 +136,7 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteHetman, TestSuiteQueenFixture)
                 board->addSquare(i, j);
         board->addPiece(PieceType::Queen, whitePlayer, 0, 2);
         board->addPiece(PieceType::Queen, blackPlayer, 2, 2);
-        bool isCorrect = board->getSquare(0, 2)->getPiece()->canBeMovedToSquare(board->getSquare(6, 2), board);
+        bool isCorrect = board->getSquare(0, 2)->getPiece()->canBeMovedToSquare(board->getSquare(6, 2), gameData);
         BOOST_REQUIRE_EQUAL(isCorrect, false);
     }
 
@@ -146,8 +150,8 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteHetman, TestSuiteQueenFixture)
         PiecePtr queen33 = board->getSquare(3, 3)->getPiece();
         PiecePtr queen36 = board->getSquare(3, 6)->getPiece();
         PiecePtr capturingQueen = board->getSquare(1, 1)->getPiece();
-        bool capture33 = board->getSquare(1, 1)->getPiece()->canBeMovedToSquare(board->getSquare(3, 3), board);
-        bool capture36 = board->getSquare(3, 3)->getPiece()->canBeMovedToSquare(board->getSquare(3, 6), board);
+        bool capture33 = board->getSquare(1, 1)->getPiece()->canBeMovedToSquare(board->getSquare(3, 3), gameData);
+        bool capture36 = board->getSquare(3, 3)->getPiece()->canBeMovedToSquare(board->getSquare(3, 6), gameData);
         BOOST_REQUIRE_EQUAL(capture33, true);
         BOOST_REQUIRE_EQUAL(capture36, true);
     }

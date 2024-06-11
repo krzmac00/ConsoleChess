@@ -3,6 +3,8 @@
 #include "Exceptions/InputException.h"
 #include "Player.h"
 #include "GameData.h"
+#include "Move.h"
+#include "Piece.h"
 #include <iostream>
 #include <vector>
 #include <cstdlib>
@@ -51,9 +53,9 @@ void ConsoleView::displayBoard(GameDataPtr gameData) const {
         black = gameData->getPlayer1();
     }
     string blackPlayer = "BLACK: " + black->getName();
-    string blackMove = "Last move: " + black->getLastMove();
+    string blackMove = "Last move: " + (gameData->getLastMove(black) == nullptr ? "" : gameData->getLastMove(black)->getAbbr());
     string whitePlayer = "WHITE: " + white->getName();
-    string whiteMove = "Last move: " + white->getLastMove();
+    string whiteMove = "Last move: " + (gameData->getLastMove(white) == nullptr ? "" : gameData->getLastMove(white)->getAbbr());
     displayColumnNames();
     displayHorizontalEdge();
     for (int row = 0; row < 8; row++) {
@@ -67,9 +69,13 @@ void ConsoleView::displayBoard(GameDataPtr gameData) const {
     cout << endl;
 }
 
-void ConsoleView::displayCapturedPieces(PlayerPtr &player1, PlayerPtr &player2) const {
-    vector<string> capturedPlayer1 = player1->getCapturedPieces();
-    vector<string> capturedPlayer2 = player2->getCapturedPieces();
+void ConsoleView::displayCapturedPieces(GameDataPtr gameData) const {
+    PlayerPtr player1 = gameData->getPlayer1();
+    PlayerPtr player2 = gameData->getPlayer2();
+    vector<string> capturedPlayer1;
+    vector<string> capturedPlayer2;
+    for(auto &p : gameData->getBoard()->getPiecesCapturedByPlayer(player1)) capturedPlayer1.emplace_back(p->getAbbr());
+    for(auto &p : gameData->getBoard()->getPiecesCapturedByPlayer(player2)) capturedPlayer2.emplace_back(p->getAbbr());
     if(player1->getColor() == WHITE) {
         cout << "captured blacks: ";
         for(auto& piece : capturedPlayer1) cout << piece << " ";
@@ -92,7 +98,7 @@ void ConsoleView::displayDefView(GameDataPtr gameData) {
     PlayerPtr player1 = gameData->getPlayer1();
     PlayerPtr player2 = gameData->getPlayer2();
     displayBoard(gameData);
-    displayCapturedPieces(player1, player2);
+    displayCapturedPieces(gameData);
     cout << "(M)enu" << endl;
     if(player1->isInCheck()) displayCheckInfo(player1);
     else if (player2->isInCheck()) displayCheckInfo(player2);
@@ -275,7 +281,7 @@ std::string ConsoleView::readUserChoiceOfMenuOption() const {
     return input;
 }
 
-ConsoleView::ConsoleView() : View() {}
+ConsoleView::ConsoleView() : IView() {}
 
 bool ConsoleView::readIfNewGame() const {
     string input;
@@ -309,9 +315,10 @@ std::string ConsoleView::readFilePath() const {
     return path;
 }
 
-void ConsoleView::displayPlayerMoves(const PlayerPtr &player) {
+void ConsoleView::displayPlayerMoves(const PlayerPtr &player, GameDataPtr gameData) {
     cout << "Player moves: ";
-    vector<string> moves = player->getMoves();
+    vector<string> moves;
+    for(auto &m : gameData->getMovesOfPlayer(player)) moves.emplace_back(m->getAbbr());
     for(auto &move : moves) {
         cout << move << " ";
     }

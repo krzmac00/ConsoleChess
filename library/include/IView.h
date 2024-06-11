@@ -1,9 +1,9 @@
-#ifndef CHESS_VIEW_H
-#define CHESS_VIEW_H
+#ifndef CHESS_IVIEW_H
+#define CHESS_IVIEW_H
 
 #include "typedefs.h"
 
-class View {
+class IView {
 protected:
     bool error;
 private:
@@ -11,11 +11,11 @@ private:
     virtual void displayHorizontalEdge() const = 0;
     virtual void displayRow(BoardPtr &board, int row, std::string info) const = 0;
     virtual void displayBoard(GameDataPtr gameData) const = 0;
-    virtual void displayCapturedPieces(PlayerPtr &player1, PlayerPtr &player2) const = 0;
+    virtual void displayCapturedPieces(GameDataPtr gameData) const = 0;
     virtual void displayEndGameMenu() const = 0;
 public:
-    View();
-    virtual ~View();
+    IView();
+    virtual ~IView();
     virtual void displayDefView(GameDataPtr gameData) = 0;
     virtual bool readIfNewGame() const = 0;
     virtual bool readIfPlayWithComputer() const = 0;
@@ -29,9 +29,9 @@ public:
     virtual void setError(bool _error);
     virtual std::string readFilePath() const = 0;
     virtual void displayMenu() const = 0;
-    virtual void displayPlayerMoves(const PlayerPtr& player) = 0;
+    virtual void displayPlayerMoves(const PlayerPtr& player, GameDataPtr gameData) = 0;
     virtual void displayError(std::string message) const = 0;
     virtual bool restartOrQuit() const = 0;
 };
 
-#endif //CHESS_VIEW_H
+#endif //CHESS_IVIEW_H

@@ -7,7 +7,7 @@ class GameLogic {
 public:
     static GameDataPtr initializeGame(Color player1Color, bool playWithComputer);
 
-    static bool isMoveCorrect(const PlayerPtr &player, MovePtr &move, GameDataPtr gameData);
+    static bool isMoveCorrect(MovePtr &move, GameDataPtr gameData);
     static bool isCastlingCorrect(const PlayerPtr &player, std::string castling, GameDataPtr gameData);
     static bool isSquareAttacked(const PlayerPtr &player, SquarePtr square, GameDataPtr gameData);
     static bool isPlayerInCheckAfterMove(const PlayerPtr &player, MovePtr &move, GameDataPtr gameData);

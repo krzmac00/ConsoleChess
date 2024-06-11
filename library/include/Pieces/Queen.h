@@ -7,7 +7,7 @@ class Queen : public Piece {
 public:
     Queen(PlayerPtr player, SquarePtr square);
     ~Queen() override;
-    bool canBeMovedToSquare(SquarePtr toSquare, BoardPtr board) override;
+    bool canBeMovedToSquare(SquarePtr toSquare, GameDataPtr gameData) override;
 };
 
 #endif //CHESS_QUEEN_H

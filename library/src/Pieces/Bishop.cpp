@@ -1,10 +1,12 @@
 #include "Pieces/Bishop.h"
+#include "GameData.h"
 #include "Board.h"
 
 Bishop::Bishop(PlayerPtr player, SquarePtr square) : Piece(PieceType::Bishop, player, square) {}
 
-bool Bishop::canBeMovedToSquare(SquarePtr toSquare, BoardPtr board) {
+bool Bishop::canBeMovedToSquare(SquarePtr toSquare, GameDataPtr gameData) {
     if(toSquare == square) return false;
+    BoardPtr board = gameData->getBoard();
     if(std::abs(square->getRow() - toSquare->getRow()) == std::abs(square->getColumn() - toSquare->getColumn())){
         if(toSquare->getRow() < square->getRow() && toSquare->getColumn() > square->getColumn()) {
             int row = square->getRow();

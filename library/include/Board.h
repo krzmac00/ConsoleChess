@@ -11,12 +11,14 @@ class Board {
 public:
     Board();
     void addSquare(int row, int column);
-    void addPiece(PieceType piece, PlayerPtr player, int row, int column);
+    void addPiece(PieceType pieceType, PlayerPtr player, int row, int column);
+    void addCapturedPiece(PieceType pieceType, PlayerPtr player);
     void deletePiece(PiecePtr piece);
 
     SquarePtr getSquare(int row, int column);
     std::vector<PiecePtr> getPieces() const;
     std::vector<PiecePtr> getPiecesOfPlayer(PlayerPtr player) const;
+    std::vector<PiecePtr> getPiecesCapturedByPlayer(PlayerPtr player) const;
     std::string toString() const;
 };
 

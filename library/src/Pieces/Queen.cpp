@@ -1,11 +1,13 @@
 #include "Pieces/Queen.h"
 #include "Board.h"
+#include "GameData.h"
 #include <cmath>
 
 Queen::Queen(PlayerPtr player, SquarePtr square) : Piece(PieceType::Queen, player, square) {}
 
-bool Queen::canBeMovedToSquare(SquarePtr toSquare, BoardPtr board) {
+bool Queen::canBeMovedToSquare(SquarePtr toSquare, GameDataPtr gameData) {
     if(toSquare == square) return false;
+    BoardPtr board = gameData->getBoard();
     if(square->getRow() == toSquare->getRow()) {
         int row = square->getRow();
         int column;
@@ -54,7 +56,7 @@ bool Queen::canBeMovedToSquare(SquarePtr toSquare, BoardPtr board) {
                 if(board->getSquare(row, column)->getPiece() != nullptr) return false;
             }
         }
-        else { //if(to->getWiersz() < square->getRow() && to->getKolumna() < square->getColumn())
+        else { //if(to->getRow() < square->getRow() && to->getColumn() < square->getColumn())
             int row = square->getRow();
             int column = square->getColumn();
             for(int i = 0; i < std::abs(square->getRow() - toSquare->getRow()) - 1; i++){

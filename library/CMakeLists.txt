@@ -21,12 +21,10 @@ set(SOURCE_FILES
         src/Exceptions/FileStructureException.cpp
         src/PiecesCreator.cpp
         src/Move.cpp
-        src/Check.cpp
-        src/View.cpp
+        src/IView.cpp
         src/GameData.cpp
         src/GameLogic.cpp
-        src/IController.cpp
-        src/Controllers/ConsoleController.cpp
+        src/Controller.cpp
         src/GameReader.cpp
         src/GameWriter.cpp
         )
@@ -58,9 +56,12 @@ set(SOURCE_TEST_FILES
         test/MoveTest.cpp
         test/BoardTest.cpp
         test/SquareTest.cpp
-        test/CheckTest.cpp
         test/View/TestView.cpp
         test/GameReaderTest.cpp
+        test/GameDataTest.cpp
+        test/GameLogicTest.cpp
+        test/ConsoleControllerTest.cpp
+        test/Controller/TestController.cpp
         )
 
 add_executable (LibraryTest ${SOURCE_TEST_FILES})

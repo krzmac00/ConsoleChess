@@ -7,7 +7,7 @@ class Pawn : public Piece {
 public:
     Pawn(PlayerPtr player, SquarePtr square);
     ~Pawn() override;
-    bool canBeMovedToSquare(SquarePtr toSquare, BoardPtr board) override;
+    bool canBeMovedToSquare(SquarePtr toSquare, GameDataPtr gameData) override;
 };
 
 #endif //CHESS_PAWN_H

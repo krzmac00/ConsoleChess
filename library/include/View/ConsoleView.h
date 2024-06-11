@@ -3,19 +3,19 @@
 
 #include <memory>
 #include <string>
-#include "View.h"
+#include "IView.h"
 
 class Board;
 class Player;
 
-class ConsoleView final : public View {
+class ConsoleView final : public IView {
 
 private:
     void displayColumnNames() const override;
     void displayHorizontalEdge() const override;
     void displayRow(BoardPtr &board, int row, std::string info) const override;
     void displayBoard(GameDataPtr gameData) const override;
-    void displayCapturedPieces(PlayerPtr &player1, PlayerPtr &player2) const override;
+    void displayCapturedPieces(GameDataPtr gameData) const override;
     void displayEndGameMenu() const override;
 public:
     ConsoleView();
@@ -31,7 +31,7 @@ public:
     std::string readUserChoiceOfMenuOption() const override;
     std::string readFilePath() const override;
     void displayMenu() const override;
-    void displayPlayerMoves(const PlayerPtr &player) override;
+    void displayPlayerMoves(const PlayerPtr &player, GameDataPtr gameData) override;
     void displayError(std::string message) const override;
     bool restartOrQuit() const override;
 };

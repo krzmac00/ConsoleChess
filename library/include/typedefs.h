@@ -9,9 +9,8 @@ class Board;
 class Player;
 class Square;
 class Piece;
-class View;
+class IView;
 class Move;
-class Check;
 class GameData;
 
 //Enumeration
@@ -75,12 +74,12 @@ inline std::ostream &operator<<(std::ostream &os, PieceType piece) {
 //Pointers
 typedef std::shared_ptr<Board> BoardPtr;
 typedef std::shared_ptr<Player> PlayerPtr;
+typedef std::weak_ptr<Player> PlayerWeakPtr;
 typedef std::shared_ptr<Square> SquarePtr;
 typedef std::shared_ptr<Piece> PiecePtr;
 typedef std::weak_ptr<Piece> PieceWeakPtr;
-typedef std::shared_ptr<View> ViewPtr;
+typedef std::shared_ptr<IView> ViewPtr;
 typedef std::shared_ptr<Move> MovePtr;
-typedef std::shared_ptr<Check> CheckPtr;
 typedef std::shared_ptr<GameData> GameDataPtr;
 
 

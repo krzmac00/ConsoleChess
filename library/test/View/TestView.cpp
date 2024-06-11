@@ -2,7 +2,7 @@
 #include <iostream>
 #include <sstream>
 
-TestView::TestView() : View(),
+TestView::TestView() : IView(),
                        newGame(true),
                        gameWithComputer(false),
                        player1Color(WHITE),
@@ -84,13 +84,13 @@ void TestView::displayColumnNames() const {}
 void TestView::displayHorizontalEdge() const {}
 void TestView::displayRow([[maybe_unused]] BoardPtr &board, [[maybe_unused]] int row, [[maybe_unused]] std::string info) const {}
 void TestView::displayBoard([[maybe_unused]] GameDataPtr gameData) const {}
-void TestView::displayCapturedPieces([[maybe_unused]] PlayerPtr &player1, [[maybe_unused]] PlayerPtr &player2) const {}
+void TestView::displayCapturedPieces([[maybe_unused]] GameDataPtr gameData) const {}
 void TestView::displayEndGameMenu() const {}
 void TestView::displayDefView([[maybe_unused]] GameDataPtr gameData) {}
 void TestView::displayWinner([[maybe_unused]] PlayerPtr winner) const {}
 void TestView::displayDraw() const {}
 void TestView::displayCheckInfo([[maybe_unused]] PlayerPtr &player) const {}
 void TestView::displayMenu() const {}
-void TestView::displayPlayerMoves([[maybe_unused]] const PlayerPtr &player) {}
+void TestView::displayPlayerMoves([[maybe_unused]] const PlayerPtr& player, [[maybe_unused]] GameDataPtr gameData) {}
 void TestView::displayError([[maybe_unused]] std::string message) const {}
 bool TestView::restartOrQuit() const {return true;}

@@ -16,19 +16,15 @@ MovePtr ComputerPlayer::getMove(BoardPtr board, [[maybe_unused]] ViewPtr view) {
     std::vector<PiecePtr> pieces = board->getPiecesOfPlayer(shared_from_this());
     std::vector<PiecePtr> activePieces;
     for (auto &piece : pieces) {
-        if (piece != nullptr && piece->isCaptured() == false) activePieces.push_back(piece);
+        if (piece != nullptr && !piece->isCaptured()) activePieces.push_back(piece);
     }
     int drawPiece = static_cast<int>(rand() % activePieces.size());
     PiecePtr piece = activePieces[drawPiece];
     do {
-        if (moves.size() < 4) {
-            toRow = rand() % 1 + 2;
-            if (color == WHITE) toRow += 2;
-        }
-        else toRow = rand() % 8;
+        toRow = rand() % 8;
         toColumn = rand() % 8;
     } while (piece->getSquare() == board->getSquare(toRow, toColumn));
-    return std::make_shared<Move>(piece->getSquare(), board->getSquare(toRow, toColumn));
+    return std::make_shared<Move>(piece->getSquare(), board->getSquare(toRow, toColumn), shared_from_this());
 }
 
 PieceType ComputerPlayer::promotion([[maybe_unused]] ViewPtr view) {
