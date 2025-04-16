@@ -3,6 +3,9 @@
 
 #include "typedefs.h"
 
+/**
+ * Presentation layer interface
+ */
 class IView {
 protected:
     bool error;

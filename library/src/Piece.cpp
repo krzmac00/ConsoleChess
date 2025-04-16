@@ -61,9 +61,9 @@ void Piece::setCaptured() {
     square = nullptr;
 }
 
-void Piece::restore(SquarePtr _square) {
+void Piece::restore(SquarePtr inSquare) {
     captured = false;
-    square = std::move(_square);
+    square = std::move(inSquare);
 }
 
 bool Piece::isFirstMove() const {

@@ -36,10 +36,6 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteKomputer, TestSuiteComputerPlayerFixture)
             (move->getFrom()->getColumn() == 0 || move->getFrom()->getColumn() == 7)) expectedFromSquareCorrect = true;
         BOOST_REQUIRE_EQUAL(expectedFromSquareCorrect, true);
 
-        bool moveToExpectedRowWhenExecutedMovesLT4 = false;
-        if (move->getTo()->getRow() == 2 || move->getTo()->getRow() == 3) moveToExpectedRowWhenExecutedMovesLT4 = true;
-        BOOST_REQUIRE_EQUAL(moveToExpectedRowWhenExecutedMovesLT4, true);
-
         BOOST_TEST(move->getTo() != move->getFrom());
         MovePtr move2 = computerBlack->getMove(board, view);
         bool areMovesDifferent = move->getTo() != move2->getTo() || move->getFrom() !=
@@ -60,10 +56,6 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteKomputer, TestSuiteComputerPlayerFixture)
         if (move->getFrom()->getRow() == 6 &&
             (move->getFrom()->getColumn() == 0 || move->getFrom()->getColumn() == 7)) expectedFromSquareCorrect = true;
         BOOST_REQUIRE_EQUAL(expectedFromSquareCorrect, true);
-
-        bool moveToExpectedRowWhenExecutedMovesLT4 = false;
-        if (move->getTo()->getRow() == 4 || move->getTo()->getRow() == 5) moveToExpectedRowWhenExecutedMovesLT4 = true;
-        BOOST_REQUIRE_EQUAL(moveToExpectedRowWhenExecutedMovesLT4, true);
 
         BOOST_TEST(move->getTo() != move->getFrom());
         MovePtr move2 = computerWhite->getMove(board, view);

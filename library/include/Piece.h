@@ -22,10 +22,17 @@ public:
     virtual void setSquare(SquarePtr _square);
     virtual bool isCaptured() const;
     virtual void setCaptured();
-    virtual void restore(SquarePtr);
+    /// sets Piece.square = inSquare and Piece.captured = false
+    virtual void restore(SquarePtr inSquare);
     virtual bool isFirstMove() const;
     virtual void setFirstMove(bool isFirst);
-    virtual bool canBeMovedToSquare(SquarePtr, GameDataPtr) = 0;
+    /**
+     * Checks if moving Piece to Square complies with piece move pattern and if there are pieces (on the way) blocking the move. \n
+     * Checking does not involve other game state components.
+     * @param toSquare destination Square
+     * @param gameData object containing the Board where Piece belongs
+     */
+    virtual bool canBeMovedToSquare(SquarePtr toSquare, GameDataPtr gameData) = 0;
 };
 
 #endif //CHESS_PIECE_H

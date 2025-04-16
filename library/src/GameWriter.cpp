@@ -42,35 +42,37 @@ void GameWriter::saveGame(GameDataPtr gameData, std::string filePath) noexcept(f
     file << (*(movesHistory.end() - 1))->getAbbr()<< std::endl;
 
     //Save players moves
-    std::vector<std::string> abbrMovesOfPlayer1;
-    std::vector<std::string> abbrMovesOfPlayer2;
-    std::vector<MovePtr> movesOfPlayer1 = gameData->getMovesOfPlayer(player1);
-    std::vector<MovePtr> movesOfPlayer2 = gameData->getMovesOfPlayer(player2);
-    for(auto &m : movesOfPlayer1) {
-        abbrMovesOfPlayer1.emplace_back(m->getAbbr());
-    }
-    for(auto &m : movesOfPlayer2) {
-        abbrMovesOfPlayer2.emplace_back(m->getAbbr());
-    }
+//    std::vector<std::string> abbrMovesOfPlayer1;
+//    std::vector<std::string> abbrMovesOfPlayer2;
+//    std::vector<MovePtr> movesOfPlayer1 = gameData->getMovesOfPlayer(player1);
+//    std::vector<MovePtr> movesOfPlayer2 = gameData->getMovesOfPlayer(player2);
+//    for(auto &m : movesOfPlayer1) {
+//        abbrMovesOfPlayer1.emplace_back(m->getAbbr());
+//    }
+//    for(auto &m : movesOfPlayer2) {
+//        abbrMovesOfPlayer2.emplace_back(m->getAbbr());
+//    }
+//
+//    bool first = true;
+//    for(auto &move : abbrMovesOfPlayer1) {
+//        if(first) {
+//            file << move;
+//            first = false;
+//        }
+//        else file << " " << move;
+//    }
+//    file << std::endl;
+//    first = true;
+//    for(auto &move : abbrMovesOfPlayer2) {
+//        if(first) {
+//            file << move;
+//            first = false;
+//        }
+//        else file << " " << move;
+//    }
+//    file << std::endl;
 
     bool first = true;
-    for(auto &move : abbrMovesOfPlayer1) {
-        if(first) {
-            file << move;
-            first = false;
-        }
-        else file << " " << move;
-    }
-    file << std::endl;
-    first = true;
-    for(auto &move : abbrMovesOfPlayer2) {
-        if(first) {
-            file << move;
-            first = false;
-        }
-        else file << " " << move;
-    }
-    file << std::endl;
 
     //Save captured pieces
     auto pieces = board->getPieces();

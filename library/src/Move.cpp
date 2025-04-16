@@ -77,7 +77,6 @@ void Move::execute(GameDataPtr &gameData) {
         pieceFirstMove = from->getPiece()->isFirstMove();
         if(to->getPiece() != nullptr) {
             capturedPiece = to->getPiece();
-            //player.lock()->addCapturedPiece(to->getPiece()->getAbbr());
             to->getPiece()->setCaptured();
         }
         //en passant
@@ -87,7 +86,6 @@ void Move::execute(GameDataPtr &gameData) {
             enPassant = true;
             SquarePtr squareOfCapturedPawn = board->getSquare(from->getRow(), to->getColumn());
             capturedPiece = squareOfCapturedPawn->getPiece();
-            //player.lock()->addCapturedPiece(squareOfCapturedPawn->getPiece()->getAbbr());
             squareOfCapturedPawn->getPiece()->setCaptured();
             squareOfCapturedPawn->setPiece(nullptr);
             pieceFirstMove = false;
